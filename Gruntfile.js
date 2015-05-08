@@ -134,6 +134,21 @@ module.exports = function (grunt) {
       }
     },
 
+      // Compile LESS
+      less: {
+          development: {
+              options: {
+                  compress: true,
+                  yuicompress: true,
+                  optimization: 2
+              },
+              files: {
+                  // target.css file: source.less file
+                  '<%= yeoman.app %>/styles/main.css': "<%= yeoman.app %>/styles/less/app.less"
+              }
+          }
+      },
+
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -397,6 +412,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'less',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -421,6 +437,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'less',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
