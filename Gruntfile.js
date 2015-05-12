@@ -144,7 +144,7 @@ module.exports = function (grunt) {
               },
               files: {
                   // target.css file: source.less file
-                  '<%= yeoman.app %>/styles/main.css': "<%= yeoman.app %>/styles/less/app.less"
+                  '<%= yeoman.app %>/styles/main.css': '<%= yeoman.app %>/styles/less/app.less'
               }
           }
       },

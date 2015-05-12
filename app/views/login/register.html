@@ -1,0 +1,32 @@
+<div class="container w-xxl w-auto-xs">
+    <div class="m-b-lg">
+        <div class="wrapper text-center">
+            <strong>Sign up an gain access</strong>
+        </div>
+        <form name="signup" ng-controller="LoginCtrl" class="form-validation ng-pristine ng-invalid ng-invalid-required">
+            <div class="list-group list-group-sm">
+                <div class="list-group-item">
+                    <input placeholder="First name" ng-model="user.first_name" class="form-control no-border ng-pristine ng-invalid ng-invalid-required" required>
+                </div>
+                <div class="list-group-item">
+                    <input placeholder="Family name" ng-model="user.last_name" class="form-control no-border ng-pristine ng-invalid ng-invalid-required" required>
+                </div>
+                <div class="list-group-item">
+                    <input type="email" placeholder="Email" ng-model="user.email" class="form-control no-border ng-pristine ng-invalid ng-invalid-required ng-valid-email" required>
+                </div>
+                <div class="list-group-item">
+                    <input type="password" placeholder="Password" ng-model="user.password" class="form-control no-border ng-pristine ng-invalid ng-invalid-required" required>
+                </div>
+            </div>
+            <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input class="ng-pristine ng-invalid ng-invalid-required" type="checkbox" required="" ng-model="agree"><i></i> Agree the <a href>terms and policy</a>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+            <div class="line line-dashed"></div>
+            <p class="text-center"><small>Already have an account?</small></p>
+            <a ui-sref="access.login" class="btn btn-lg btn-default btn-block">Sign in</a>
+        </form>
+    </div>
+</div>
