@@ -23,14 +23,14 @@ angular
     .config(function($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/login');
         //
         // Now set up the states
         $stateProvider
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div ui-view class="fade-in-right-big smooth"></div>'
+                template: '<div class="v-center"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',
