@@ -15,11 +15,12 @@ angular
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
     'ui.router'
-  ])
+  ]).constant('urls', {
+        API: 'http://<hier api domain eingeben>'
+    })
     .config(function($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1
