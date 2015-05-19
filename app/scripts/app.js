@@ -31,6 +31,9 @@ angular
                 abstract: true,
                 controller: 'LoginCtrl',
                 template: '<div class="v-center"><div ui-view class="fade-in-right-big smooth"></div></div>'
+                data: {
+                    requireLogin: true;
+                }
             })
             .state('access.login', {
                 url: '/login',
