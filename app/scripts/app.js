@@ -9,18 +9,18 @@
  * Main module of the application.
  */
 angular
-  .module('deviceRegistrationApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ui.router'
-  ])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .module('deviceRegistrationApp', [
+        'ngAnimate',
+        'ngAria',
+        'ngCookies',
+        'ngMessages',
+        'ngResource',
+        'ngRoute',
+        'ngSanitize',
+        'ngTouch',
+        'ui.router'
+    ])
+    .config(function ($stateProvider, $urlRouterProvider) {
         //
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise('/login');
@@ -30,17 +30,14 @@ angular
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="v-center"><div ui-view class="fade-in-right-big smooth"></div></div>'
-                data: {
-                    requireLogin: true;
-                }
+                template: '<div class="h-full triangular-primary"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',
                 templateUrl: 'views/login/login.html'
             })
             .state('access.register', {
-                url: '/signup',
+                url: '/register',
                 templateUrl: 'views/login/register.html'
             })
             .state('access.forgotpwd', {
