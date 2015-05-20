@@ -29,6 +29,17 @@ angular
         //
         // Now set up the states
         $stateProvider
+            .state('app', {
+                abstract: true,
+                templateUrl: 'views/app.html',
+                data: {
+                    requiresLogin: true
+                }
+            })
+            .state('app.devices', {
+                url: '/devices',
+                templateUrl: 'views/devices/all.html'
+            })
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
