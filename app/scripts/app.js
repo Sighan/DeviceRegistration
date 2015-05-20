@@ -30,7 +30,7 @@ angular
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="h-full triangular-primary"><div ui-view class="fade-in-right-big smooth"></div></div>'
+                template: '<div class="h-full bg-dark"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',
