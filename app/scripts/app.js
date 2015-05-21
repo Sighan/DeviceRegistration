@@ -16,6 +16,7 @@ angular
     'ngMessages',
     'ngResource',
     'ngSanitize',
+    'ngStorage',
     'ngTouch',
     'ui.router'
   ]).constant('urls', {
@@ -28,10 +29,21 @@ angular
         //
         // Now set up the states
         $stateProvider
+            .state('app', {
+                abstract: true,
+                templateUrl: 'views/app.html',
+                data: {
+                    requiresLogin: true
+                }
+            })
+            .state('app.devices', {
+                url: '/devices',
+                templateUrl: 'views/devices/all.html'
+            })
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="h-full triangular-primary"><div ui-view class="fade-in-right-big smooth"></div></div>'
+                template: '<div class="h-full bg-dark"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',
