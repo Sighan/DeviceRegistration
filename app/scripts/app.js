@@ -60,4 +60,7 @@ angular
             });
 
         $httpProvider.interceptors.push('requestInterceptor');
+    })
+    .run(function($rootScope, stateChangeInterceptor) {
+      $rootScope.$on('$stateChangeStart', stateChangeInterceptor);
     });

@@ -36,14 +36,14 @@ angular.module('deviceRegistrationApp')
              return user;
          }
 
-         function hasValidToken() {
-            //Wenn Token noch gültig return true, wenn nicht versuche refreshToken, wenn das fehlschlägt dann false zurück geben
-         }
-
          function refreshToken() {
-            //Send Token to Server
-            // a) receive new Token or
-            // b) receive positive response => refresh Token duration
+            $http.post(urls.API + '/refresh', data)
+            .success(function(res) {
+              $localStorage.token = res.token;
+              tokenClaims=getClaimsFromToken
+            }).error(function() {
+              $localStorage.token = null;
+            })
          }
 
          var tokenClaims = getClaimsFromToken();
@@ -64,6 +64,17 @@ angular.module('deviceRegistrationApp')
              },
              getTokenClaims: function () {
                  return tokenClaims;
+             },
+             hasValidToken: function () {
+                 if (!$localStorage.token) {
+                   return false;
+                 }
+                 var currentTimeInSeconds = (new Date).getTime() / 1000
+                 if (tokenClaims.exp < currentTimeInSeconds) {
+                    return false;
+                 } else {
+                    return true;
+                 }
              }
          };
      }

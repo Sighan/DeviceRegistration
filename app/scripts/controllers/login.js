@@ -19,8 +19,9 @@ angular.module('deviceRegistrationApp')
             $scope.signin = function (user, isValid) {
                 if (isValid) {
                     authService.signin(user,
-                        function () {
-                            $state.go("app.devices");
+                        function (res) {
+                            $localStorage.token = res.token;
+                            $state.transitionTo("app.devices");
                         }
                         , function () {
                             //Hier ordentliches errorhandling einbauen
@@ -31,9 +32,9 @@ angular.module('deviceRegistrationApp')
 
             $scope.signup = function (user, isValid) {
                 if (isValid) {
-                    authService.signup(formData,
+                    authService.signup(user,
                         function () {
-                            $state.go("app.devices");
+                            $state.transitionTo("app.devices");
                         }
                         , function () {
                             //Hier ordentliches errorhandling einbauen
