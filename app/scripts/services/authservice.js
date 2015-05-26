@@ -36,6 +36,16 @@ angular.module('deviceRegistrationApp')
              return user;
          }
 
+         function hasValidToken() {
+            //Wenn Token noch gültig return true, wenn nicht versuche refreshToken, wenn das fehlschlägt dann false zurück geben
+         }
+
+         function refreshToken() {
+            //Send Token to Server
+            // a) receive new Token or
+            // b) receive positive response => refresh Token duration
+         }
+
          var tokenClaims = getClaimsFromToken();
 
          return {
@@ -43,7 +53,9 @@ angular.module('deviceRegistrationApp')
                  $http.post(urls.API + '/signup', data).success(success).error(error)
              },
              signin: function (data, success, error) {
-                 $http.post(urls.API + '/signin', data).success(success).error(error)
+                 //$http.post(urls.API + '/signin', data).success(success).error(error)
+                 success();
+
              },
              logout: function (success) {
                  tokenClaims = {};
