@@ -39,8 +39,18 @@ angular
                 }
             })
             .state('app.devices', {
-                url: '/devices',
+                abstract: true,
+                controller: 'DeviceCtrl',
+                template: '<div ui-view class="fade-in-down"></div>',
+                url: '/devices'
+            })
+            .state('app.devices.all', {
+                url: '/all',
                 templateUrl: 'views/devices/all.html'
+            })
+            .state('app.devices.new', {
+                url: '/new',
+                templateUrl: 'views/devices/new.html'
             })
             .state('access', {
                 abstract: true,

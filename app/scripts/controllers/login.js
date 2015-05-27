@@ -13,7 +13,7 @@ angular.module('deviceRegistrationApp')
 
             $scope.fakeLogin = function () {
                 console.log("Fake login...");
-                $location.path('devices');
+                $location.path('devices/all');
             }
 
             $scope.signin = function (user, isValid) {
