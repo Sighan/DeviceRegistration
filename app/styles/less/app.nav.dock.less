@@ -1,21 +1,21 @@
-@media (min-width: @app-aside-dock-media) {
-	.app-aside-dock{
-		.app-content,
-		.app-footer{
+@media (min-width: @aside-dock-media) {
+	.aside-dock{
+		.content,
+		.footer{
 			margin-left: 0;
 		}
-		&.app-aside-fixed{
-			&.app-header-fixed{
+		&.aside-fixed{
+			&.header-fixed{
 				padding-top: 115px;
 			}
-			.app-aside{
+			.aside{
 				position: fixed;
 				top: 50px;
 				width: 100%;
 				z-index: 1000;
 			}
 		}
-		.app-aside,
+		.aside,
 		.aside-wrap,
 		.navi-wrap{
 			float: none;
@@ -25,7 +25,7 @@
 			overflow: visible !important;
 		}
 
-		.app-aside{
+		.aside{
 			&.b-r{
 				border-right-width: 0;
 				border-bottom:1px solid @border-color;
@@ -94,7 +94,7 @@
 					left: 0;
 					top: auto !important;
 					z-index: 1050;
-					width: @app-aside-width;
+					width: @aside-width;
 					.box-shadow(0 2px 6px rgba(0,0,0,0.1));
 				}
 				.nav-sub-header{

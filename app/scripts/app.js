@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngStorage',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'ui.select'
   ]).constant('urls', {
         API: 'http://<hier api domain eingeben>'
     })
@@ -31,6 +32,7 @@ angular
         $stateProvider
             .state('app', {
                 abstract: true,
+                controller: 'AppCtrl',
                 templateUrl: 'views/app.html',
                 data: {
                     requiresLogin: true

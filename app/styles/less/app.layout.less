@@ -15,9 +15,9 @@ body {
   position: relative;
 }
 
-.app-header-fixed {
-  padding-top: @app-header-height;
-  .app-header {
+.header-fixed {
+  padding-top: @header-height;
+  .header {
     position: fixed;
     left: 0;
     top: 0;
@@ -25,13 +25,13 @@ body {
   }
 }
 
-.app-header {
+.header {
   z-index: 1035;
   border-radius: 0;
 }
 
 // menu
-.app-aside {
+.aside {
   position: relative;
   float: left;
   &:before {
@@ -47,19 +47,19 @@ body {
 }
 
 // content
-.app-content {
+.content {
   height: 100%;
   .clearfix();
 }
 
-.app-content-body {
-  padding-bottom: @app-header-height;
+.content-body {
+  padding-bottom: @header-height;
   float: left;
   width: 100%;
 }
 
 // footer
-.app-footer {
+.footer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -140,7 +140,7 @@ body {
 }
 
 .navbar-md {
-  min-height: @app-header-md-height;
+  min-height: @header-md-height;
   .navbar-btn {
     margin-top: 13px;
   }
@@ -173,7 +173,7 @@ body {
   font-size: 20px;
   font-weight: 700;
   height: auto;
-  line-height: @app-header-height;
+  line-height: @header-height;
   display: inline-block;
   padding: 0 20px;
   &:hover {
@@ -193,21 +193,15 @@ body {
     border-right: 1px solid darken(@border-color, 10%);
   }
 
-  .app-aside,
-  .navbar-header {
-    width: @app-aside-width;
-  }
-
-  .app-content,
-  .app-footer {
-    margin-left: @app-aside-width;
+  .aside, {
+    width: @aside-width;
   }
 
   .visible-folded {
     display: none;
   }
 
-  .app-aside-folded {
+  .aside-folded {
     .hidden-folded {
       display: none !important;
     }
@@ -224,15 +218,11 @@ body {
       width: auto;
     }
 
-    .app-aside,
+    .aside,
     .navbar-header {
-      width: @app-aside-folded-width;
+      width: @aside-folded-width;
     }
-    .app-content,
-    .app-footer {
-      margin-left: @app-aside-folded-width;
-    }
-    .app-header {
+    .header {
       .navbar-brand {
         display: block;
         padding: 0;
@@ -241,26 +231,26 @@ body {
 
   }
 
-  .app-aside-fixed {
-    .app-header {
+  .aside-fixed {
+    .header {
       .navbar-header {
         position: fixed;
       }
       .navbar-collapse {
-        padding-left: @app-aside-width;
+        padding-left: @aside-width;
       }
     }
-    &.app-aside-folded {
-      .app-header {
+    &.aside-folded {
+      .header {
         .navbar-collapse {
-          padding-left: @app-aside-folded-width;
+          padding-left: @aside-folded-width;
         }
       }
-      .app-aside {
+      .aside {
         .aside-wrap {
-          width: @app-aside-folded-width;
+          width: @aside-folded-width;
           .no-touch & .navi-wrap {
-            width: @app-aside-folded-width + @scroll-bar-width;
+            width: @aside-folded-width + @scroll-bar-width;
           }
         }
       }
@@ -268,10 +258,10 @@ body {
     .aside-wrap {
       position: fixed;
       overflow: hidden;
-      top: @app-header-height;
+      top: @header-height;
       left: 0;
       bottom: 0;
-      width: @app-aside-width;
+      width: @aside-width;
       .navi-wrap {
         position: relative;
         height: 100%;
@@ -280,7 +270,7 @@ body {
         -webkit-overflow-scrolling: touch;
       }
       .no-touch & .navi-wrap {
-        width: @app-aside-width + @scroll-bar-width;
+        width: @aside-width + @scroll-bar-width;
       }
     }
   }
@@ -298,9 +288,9 @@ body {
     }
     &.bg-auto-left {
       &:before {
-        left: @app-aside-width;
-        .app-aside-folded & {
-          left: @app-aside-folded-width;
+        left: @aside-width;
+        .aside-folded & {
+          left: @aside-folded-width;
         }
       }
     }
@@ -332,7 +322,7 @@ body {
 
 // xs
 @media (max-width: 767px) {
-  .app-aside {
+  .aside {
     float: none;
   }
 
