@@ -208,6 +208,13 @@
   box-shadow: none !important;
 }
 
+.row.inline-block > * {
+  float: none;
+  display: inline-block;
+  vertical-align: top;
+  margin: auto -0.125em;
+}
+
 .row.row-eq-height {
   overflow: hidden;
 }
@@ -1020,6 +1027,19 @@
   }
   .hover-rotate {
     .rotate(90deg)
+  }
+}
+
+.panel.hover:hover {
+
+  cursor: pointer;
+  border: 1px solid darken(@border-color, 10%);
+
+  .panel-heading {
+    border-bottom: 1px solid darken(@border-color, 10%);
+  }
+  .panel-footer {
+    border-top: 1px solid darken(@border-color, 10%);
   }
 }
 
