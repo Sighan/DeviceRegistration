@@ -12,35 +12,35 @@ angular.module('deviceRegistrationApp')
         function ($scope, $location, authService) {
 
             $scope.fakeLogin = function () {
-                console.log("Fake login...");
+                console.log('Fake login...');
                 $location.path('devices/all');
-            }
+            };
 
             $scope.signin = function (user, isValid) {
                 if (isValid) {
-                    authService.signin(formData,
+                    authService.signin(user,
                         function () {
                             //$location.path("/");
-                            alert("Login successful! Yay")
-                        }
-                        , function () {
+                            alert('Login successful! Yay');
+                        },
+                        function () {
                             //Hier ordentliches errorhandling einbauen
-                            alert("Invalid credentials");
-                        })
+                            alert('Invalid credentials');
+                        });
                 }
             };
 
             $scope.register = function (user, isValid) {
                 if (isValid) {
-                    authService.signup(formData,
+                    authService.signup(user,
                         function () {
                             //$location.path("/login");
-                            alert("Account created")
-                        }
-                        , function () {
+                            alert('Account created');
+                        },
+                        function () {
                             //Hier ordentliches errorhandling einbauen
-                            alert("Account could not be created");
-                        })
+                            alert('Account could not be created');
+                        });
                 }
             };
 

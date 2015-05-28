@@ -40,10 +40,10 @@ angular.module('deviceRegistrationApp')
 
          return {
              signup: function (data, success, error) {
-                 $http.post(urls.API + '/signup', data).success(success).error(error)
+                 $http.post(urls.API + '/signup', data).success(success).error(error);
              },
              signin: function (data, success, error) {
-                 $http.post(urls.API + '/signin', data).success(success).error(error)
+                 $http.post(urls.API + '/signin', data).success(success).error(error);
              },
              logout: function (success) {
                  tokenClaims = {};
