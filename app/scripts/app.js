@@ -18,7 +18,6 @@ angular
         'ngSanitize',
         'ngStorage',
         'ngTouch',
-        'daterangepicker',
         'ui.bootstrap',
         'ui.router',
         'ui.select'
