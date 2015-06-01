@@ -21,7 +21,6 @@
     "lodash": "~2.4.1",
     "jsjws": "~3.2.2",
     "ngstorage": "~0.3.4",
-    "angular-daterangepicker": "git@github.com:Domtain/angular-daterangepicker.git#master",
     "moment": "~2.10.3",
     "angular-bootstrap": "~0.13.0"
   },
