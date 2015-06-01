@@ -8,12 +8,12 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('LoginCtrl', ['$scope', '$state', 'authService',
-        function ($scope, $state, authService) {
+    .controller('LoginCtrl', ['$scope', '$state', '$localStorage', 'authService',
+        function ($scope, $state, $localStorage, authService) {
 
             $scope.fakeLogin = function () {
                 console.log('Fake login...');
-                $location.path('devices/all');
+                $state.transitionTo('app.devices');
             };
 
             $scope.signin = function (user, isValid) {
@@ -21,9 +21,8 @@ angular.module('deviceRegistrationApp')
                     authService.signin(user,
                         function (res) {
                             $localStorage.token = res.token;
-                            $state.transitionTo("app.devices");
-                        }
-                        , function () {
+                            $state.transitionTo('app.devices');
+                        }, function () {
                             //Hier ordentliches errorhandling einbauen
                             alert('Invalid credentials');
                         });
@@ -34,12 +33,11 @@ angular.module('deviceRegistrationApp')
                 if (isValid) {
                     authService.signup(user,
                         function () {
-                            $state.transitionTo("app.devices");
-                        }
-                        , function () {
+                            $state.transitionTo('app.devices');
+                        }, function () {
                             //Hier ordentliches errorhandling einbauen
-                            alert("Account could not be created");
-                        })
+                            alert('Account could not be created');
+                        });
                 }
             };
 

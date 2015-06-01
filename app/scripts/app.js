@@ -19,22 +19,10 @@ angular
     'ngStorage',
     'ngTouch',
     'ui.router',
+    'ui.bootstrap',
     'ngStorage',
     'ui.select'
   ]).constant('urls', {
-    .module('deviceRegistrationApp', [
-        'ngAnimate',
-        'ngAria',
-        'ngCookies',
-        'ngMessages',
-        'ngResource',
-        'ngSanitize',
-        'ngStorage',
-        'ngTouch',
-        'ui.bootstrap',
-        'ui.router',
-        'ui.select'
-    ]).constant('urls', {
         API: 'http://<hier api domain eingeben>'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
