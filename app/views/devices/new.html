@@ -38,6 +38,10 @@
                                 </ui-select-choices>
                             </ui-select>
                         </div>
+                        <div class="form-group">
+                            <label class="form-label">Labels</label>
+                            <input type="text" class="form-control">
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -49,26 +53,94 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="c" class="form-label">Comment</label>
-                            <input type="text" class="form-control" id="c">
+                            <label class="form-label">Comment</label>
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                 </fieldset>
             </div>
-            <div class="fieldset-form">
+            <div class="fieldset-form m-b-md">
                 <fieldset>
-                    <legend>Labels</legend>
-                        <div class="form-group">
-                            <label class="form-label">Labels</label>
-                            <ui-select multiple ng-model="$parent.labels" ng-disabled="disabled">
-                                <ui-select-match placeholder="Add labels...">{{$item}}</ui-select-match>
-                                <ui-select-choices repeat="label in labels | filter:$select.search">
-                                    {{label}}
-                                </ui-select-choices>
-                            </ui-select>
+                    <legend>
+                        <span class="m-r-sm">Maintenance</span>
+                        <label class="i-switch i-switch-md bg-primary pull-out m-r-xs">
+                            <input type="checkbox" class="form-control" ng-model="hasMaintenance">
+                            <i></i>
+                        </label>
+                    </legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Interval</label>
+                                <ui-select ng-model="$parent.range" theme="bootstrap" ng-disabled="!hasMaintenance">
+                                    <ui-select-match placeholder="Select an interval ...">{{$select.selected}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="range in ranges | filter: $select.search">
+                                        <div ng-bind-html="range| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Period start</label>
 
+                                <div class="input-group">
+                                    <input type="date" class="form-control" datepicker-popup ng-model="date"
+                                           is-open="opened"
+                                           datepicker-options="{formatYear: 'yy',startingDay: 1}" close-text="Close"
+                                           ng-disabled="!hasMaintenance"/>
+                                <span class="input-group-addon bg-white text-muted">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
+            </div>
+            <div class="fieldset-form m-b-md">
+                <fieldset>
+                    <legend>
+                        <span class="m-r-sm">Notifications</span>
+                        <label class="i-switch i-switch-md bg-primary pull-out m-r-xs">
+                            <input type="checkbox" class="form-control" ng-model="hasNotification">
+                            <i></i>
+                        </label>
+                    </legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Reminder</label>
+                                <ui-select ng-model="$parent.reminder" theme="bootstrap" ng-disabled="!hasNotification">
+                                    <ui-select-match placeholder="Select a date ...">{{$select.selected}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="range in ranges | filter: $select.search">
+                                        <div ng-bind-html="range| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">E-mail address</label>
+                                <input type="email" class="form-control" ng-disabled="!hasNotification">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="pull-right">
+                        <button ng-click="save()" class="btn btn-primary m-r-sm">
+                            Save
+                        </button>
+                        <button ng-click="clear()" class="btn btn-default">
+                            Clear
+                        </button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

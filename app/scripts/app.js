@@ -9,21 +9,23 @@
  * Main module of the application.
  */
 angular
-  .module('deviceRegistrationApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngSanitize',
-    'ngStorage',
-    'ngTouch',
-    'ui.router',
-    'ui.select'
-  ]).constant('urls', {
+    .module('deviceRegistrationApp', [
+        'ngAnimate',
+        'ngAria',
+        'ngCookies',
+        'ngMessages',
+        'ngResource',
+        'ngSanitize',
+        'ngStorage',
+        'ngTouch',
+        'daterangepicker',
+        'ui.bootstrap',
+        'ui.router',
+        'ui.select'
+    ]).constant('urls', {
         API: 'http://<hier api domain eingeben>'
     })
-    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         //
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise('/login');
@@ -55,7 +57,7 @@ angular
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="h-full bg-dark"><div ui-view class="fade-in-right-big smooth"></div></div>'
+                template: '<div class="modal-over bg-black"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',
@@ -71,20 +73,20 @@ angular
             });
 
         $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-           return {
-               'request': function (config) {
-                   config.headers = config.headers || {};
-                   if ($localStorage.token) {
-                       config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                   }
-                   return config;
-               },
-               'responseError': function (response) {
-                   if (response.status === 401 || response.status === 403) {
-                       $location.path('/login');
-                   }
-                   return $q.reject(response);
-               }
-           };
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.token) {
+                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                    }
+                    return config;
+                },
+                'responseError': function (response) {
+                    if (response.status === 401 || response.status === 403) {
+                        $location.path('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
         }]);
     });
