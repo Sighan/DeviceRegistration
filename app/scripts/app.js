@@ -22,9 +22,22 @@ angular
     'ngStorage',
     'ui.select'
   ]).constant('urls', {
+    .module('deviceRegistrationApp', [
+        'ngAnimate',
+        'ngAria',
+        'ngCookies',
+        'ngMessages',
+        'ngResource',
+        'ngSanitize',
+        'ngStorage',
+        'ngTouch',
+        'ui.bootstrap',
+        'ui.router',
+        'ui.select'
+    ]).constant('urls', {
         API: 'http://<hier api domain eingeben>'
     })
-    .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         //
         // For any unmatched url, redirect to /state1
         $urlRouterProvider.otherwise('/login');
@@ -56,7 +69,7 @@ angular
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="h-full bg-dark"><div ui-view class="fade-in-right-big smooth"></div></div>'
+                template: '<div class="modal-over bg-black"><div ui-view class="fade-in-right-big smooth"></div></div>'
             })
             .state('access.login', {
                 url: '/login',

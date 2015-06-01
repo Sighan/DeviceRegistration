@@ -12,9 +12,9 @@ angular.module('deviceRegistrationApp')
         function ($scope, $state, authService) {
 
             $scope.fakeLogin = function () {
-                console.log("Fake login...");
+                console.log('Fake login...');
                 $location.path('devices/all');
-            }
+            };
 
             $scope.signin = function (user, isValid) {
                 if (isValid) {
@@ -25,8 +25,8 @@ angular.module('deviceRegistrationApp')
                         }
                         , function () {
                             //Hier ordentliches errorhandling einbauen
-                            alert("Invalid credentials");
-                        })
+                            alert('Invalid credentials');
+                        });
                 }
             };
 
