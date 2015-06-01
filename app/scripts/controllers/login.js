@@ -8,8 +8,8 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('LoginCtrl', ['$scope', '$location', 'authService',
-        function ($scope, $location, authService) {
+    .controller('LoginCtrl', ['$scope', '$state', 'authService',
+        function ($scope, $state, authService) {
 
             $scope.fakeLogin = function () {
                 console.log("Fake login...");
@@ -18,10 +18,10 @@ angular.module('deviceRegistrationApp')
 
             $scope.signin = function (user, isValid) {
                 if (isValid) {
-                    authService.signin(formData,
-                        function () {
-                            //$location.path("/");
-                            alert("Login successful! Yay")
+                    authService.signin(user,
+                        function (res) {
+                            $localStorage.token = res.token;
+                            $state.transitionTo("app.devices");
                         }
                         , function () {
                             //Hier ordentliches errorhandling einbauen
@@ -30,12 +30,11 @@ angular.module('deviceRegistrationApp')
                 }
             };
 
-            $scope.register = function (user, isValid) {
+            $scope.signup = function (user, isValid) {
                 if (isValid) {
-                    authService.signup(formData,
+                    authService.signup(user,
                         function () {
-                            //$location.path("/login");
-                            alert("Account created")
+                            $state.transitionTo("app.devices");
                         }
                         , function () {
                             //Hier ordentliches errorhandling einbauen

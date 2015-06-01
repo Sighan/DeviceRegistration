@@ -19,6 +19,7 @@ angular
     'ngStorage',
     'ngTouch',
     'ui.router',
+    'ngStorage',
     'ui.select'
   ]).constant('urls', {
         API: 'http://<hier api domain eingeben>'
@@ -70,21 +71,8 @@ angular
                 templateUrl: 'views/login/forgotpwd.html'
             });
 
-        $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-           return {
-               'request': function (config) {
-                   config.headers = config.headers || {};
-                   if ($localStorage.token) {
-                       config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                   }
-                   return config;
-               },
-               'responseError': function (response) {
-                   if (response.status === 401 || response.status === 403) {
-                       $location.path('/login');
-                   }
-                   return $q.reject(response);
-               }
-           };
-        }]);
+        $httpProvider.interceptors.push('requestInterceptor');
+    })
+    .run(function($rootScope, stateChangeInterceptor) {
+      $rootScope.$on('$stateChangeStart', stateChangeInterceptor);
     });
