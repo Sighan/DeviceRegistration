@@ -51,25 +51,25 @@ angular.module('deviceRegistrationApp')
             device.id = Math.floor((Math.random() * 50) + 1);
             if(deviceService.saveDevice(device)) {
                 $location.path('/devices/all');
-            };
-        }
+            }
+        };
         $scope.update = function() {
 
-        }
+        };
         $scope.delete = function(device) {
             if(deviceService.deleteDevice(device.id)) {
                 $location.path('/devices/all');
             }
-        }
+        };
         $scope.get = function() {
             var id = $state.params.id;
             if(angular.isNumber(id)) {
                 $scope.device = deviceService.loadDevice(id);
             }
-        }
+        };
         $scope.getAll = function() {
             $scope.devices = deviceService.loadDevices();
-        }
+        };
         $scope.reset = function(form) {
             if (form) {
                 form.$setPristine();
