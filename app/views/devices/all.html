@@ -2,158 +2,24 @@
     <div class="row padder-v pos-rlt">
         <h1 class="m-n font-thin h3">Devices</h1>
     </div>
-    <div class="row inline-block padder-v">
-        <div class="col-sm-3">
+    <div ng-init="getAll()" class="row inline-block padder-v">
+        <div class="col-sm-3" ng-repeat="device in devices track by $index">
             <div class="panel panel-default hover">
                 <div class="panel-heading">
-                    <span class="label bg-primary pull-right">NEW</span>
-                    <h4 class="m-n">Device #1</h4>
+                    <span ng-show="device.id < 3" class="label bg-primary pull-right">NEW</span>
+                    <h4 class="m-n">{{device.designation}}</h4>
                 </div>
                 <div class="panel-body">
                     <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
+                        <li>Serial number: {{device.serial}}</li>
+                        <li>Category: {{device.category}}</li>
+                        <li>Group: {{device.group}}</li>
                     </ul>
-                    <span class="label label-default">Label #1</span>
+                    <span class="label label-default m-r-xs" ng-repeat="label in device.labels">{{label}}</span>
                 </div>
                 <div class="panel-footer">
                     <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <span class="label bg-primary pull-right">NEW</span>
-                    <h4 class="m-n">Device #2</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                    <span class="label label-default">Label #1</span>
-                    <span class="label label-default">Label #2</span>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #3</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #4</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #5</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #6</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                    <span class="label label-default">Label #1</span>
-                    <span class="label label-default">Label #2</span>
-                    <span class="label label-default">Label #3</span>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #7</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                    <span class="label label-default">Label #1</span>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <h4 class="m-n">Device #8</h4>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-unstyled">
-                        <li>Serial number: 123456789</li>
-                        <li>Category: Flow</li>
-                        <li>Group: Magnetic Flowmeters</li>
-                    </ul>
-                    <span class="label label-default">Label #1</span>
-                </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-list"></i></button>
+                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i class="glyphicon glyphicon-list"></i></button>
                 </div>
             </div>
         </div>

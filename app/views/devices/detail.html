@@ -1,0 +1,103 @@
+<div class="wrapper-md">
+    <div class="row padder-v pos-rlt">
+        <h1 class="m-n font-thin h3">{{device.designation}}</h1>
+    </div>
+    <div class="row padder-v">
+        <div ng-init="get()">
+            <div class="fieldset-form m-b-md">
+                <fieldset>
+                    <legend>Device</legend>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">Device category</label>
+                            <p class="font-bold text-lg">{{device.category}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Device group</label>
+                            <p class="font-bold text-lg">{{device.group}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Process medium</label>
+                            <p class="font-bold text-lg">{{device.medium}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Labels</label>
+                            <p>
+                                <span class="label label-default m-r-xs"
+                                      ng-repeat="label in device.labels">{{label}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">Device designation</label>
+                            <p class="font-bold text-lg">{{device.designation}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Serial number</label>
+                            <p class="font-bold text-lg">{{device.serial}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Comment</label>
+                            <p class="font-bold text-lg">{{device.comment}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fieldset-form m-b-md">
+                <fieldset>
+                    <legend>
+                        <span class="">Maintenance</span>
+                    </legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Interval</label>
+                                <p class="font-bold text-lg">{{device.maintenance.interval}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Period start</label>
+                                <p class="font-bold text-lg">{{device.maintenance.start}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fieldset-form m-b-md">
+                <fieldset>
+                    <legend>
+                        <span class="">Notifications</span>
+                    </legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Reminder</label>
+                                <p class="font-bold text-lg">{{device.notification.reminder}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">E-mail address</label>
+                                <p class="font-bold text-lg">{{device.notification.mail}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="pull-right">
+                        <button ng-click="delete(device)" class="btn btn-danger m-r-sm">
+                            Delete
+                        </button>
+                        <button ng-click="edit()" class="btn btn-default">
+                            Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
