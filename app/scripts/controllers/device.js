@@ -8,7 +8,7 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('DeviceCtrl',['$scope', '$state', '$location', 'deviceService', function ($scope, $state, $location, deviceService) {
+    .controller('DeviceCtrl', ['$scope', '$state', '$location', 'deviceService', function ($scope, $state, $location, deviceService) {
 
         $scope.hasMaintenance = false;
         $scope.hasNotification = false;
@@ -20,7 +20,7 @@ angular.module('deviceRegistrationApp')
         $scope.mediums = ['Medium #1', 'Medium #2', 'Medium #3'];
 
         //Add some test devices
-        for(var i=1; i<=5; i++) {
+        for (var i = 1; i <= 5; i++) {
             deviceService.saveDevice(
                 {
                     id: i,
@@ -34,43 +34,46 @@ angular.module('deviceRegistrationApp')
                         'Label #1', 'Label #2', 'Label #3'
                     ],
                     maintenance: {
-                        interval: i +' months',
+                        interval: i + ' months',
                         start: '23.06.2015'
                     },
                     notification: {
-                        reminder: i +' year',
+                        reminder: i + ' year',
                         mail: 'max@mustermann.de'
                     }
                 }
             );
         }
 
-        $scope.device = {};
-
-        $scope.save = function(device) {
-            device.id = Math.floor((Math.random() * 50) + 1);
-            if(deviceService.saveDevice(device)) {
+        $scope.save = function (device) {
+            if (!angular.isNumber(device.id)) {
+                device.id = Math.floor((Math.random() * 100) + 1);
+            }
+            if (deviceService.saveDevice(device)) {
                 $location.path('/devices');
             }
         };
-        $scope.update = function() {
+        $scope.update = function () {
 
         };
-        $scope.delete = function(device) {
-            if(deviceService.deleteDevice(device.id)) {
+        $scope.delete = function (device) {
+            if (deviceService.deleteDevice(device.id)) {
                 $location.path('/devices');
             }
         };
-        $scope.get = function() {
+        $scope.get = function () {
             var id = $state.params.id;
-            if(angular.isNumber(id)) {
+            if (angular.isNumber(id)) {
                 $scope.device = deviceService.loadDevice(id);
+            } else {
+                $scope.device = {};
             }
+
         };
-        $scope.getAll = function() {
+        $scope.getAll = function () {
             $scope.devices = deviceService.loadDevices();
         };
-        $scope.reset = function(form) {
+        $scope.reset = function (form) {
             if (form) {
                 form.$setPristine();
                 form.$setUntouched();
