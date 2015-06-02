@@ -92,7 +92,7 @@
                         <button ng-click="delete(device)" class="btn btn-danger m-r-sm">
                             Delete
                         </button>
-                        <button ng-click="edit()" class="btn btn-default">
+                        <button ui-sref="app.devices.edit({id: device.id})" class="btn btn-default">
                             Edit
                         </button>
                     </div>

@@ -50,7 +50,7 @@ angular.module('deviceRegistrationApp')
         $scope.save = function(device) {
             device.id = Math.floor((Math.random() * 50) + 1);
             if(deviceService.saveDevice(device)) {
-                $location.path('/devices/all');
+                $location.path('/devices');
             }
         };
         $scope.update = function() {
@@ -58,7 +58,7 @@ angular.module('deviceRegistrationApp')
         };
         $scope.delete = function(device) {
             if(deviceService.deleteDevice(device.id)) {
-                $location.path('/devices/all');
+                $location.path('/devices');
             }
         };
         $scope.get = function() {

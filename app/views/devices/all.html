@@ -4,7 +4,7 @@
     </div>
     <div ng-init="getAll()" class="row inline-block padder-v">
         <div class="col-sm-3" ng-repeat="device in devices track by $index">
-            <div class="panel panel-default hover">
+            <div ui-sref="app.devices.detail({id: device.id})" class="panel panel-default hover">
                 <div class="panel-heading">
                     <span ng-show="device.id < 3" class="label bg-primary pull-right">NEW</span>
                     <h4 class="m-n">{{device.designation}}</h4>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="panel-footer">
                     <button class="btn btn-icon btn-default"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i class="glyphicon glyphicon-list"></i></button>
+                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i class="glyphicon glyphicon-file"></i></button>
                 </div>
             </div>
         </div>
