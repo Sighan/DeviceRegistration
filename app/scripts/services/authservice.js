@@ -54,7 +54,9 @@ angular.module('deviceRegistrationApp')
              },
              signin: function (data, success, error) {
                  //$http.post(urls.API + '/signin', data).success(success).error(error)
-                 success();
+                 var fakeTokenResponse=[];
+                 fakeTokenResponse.token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNDY0ODk0Nzk3IiwidGVzdHdlcnQiOiJURVNUIEVSRk9MR1JFSUNIIn0.AX9nKr6MXQu6aVezlzNklEOP7cSCAHiVhQhJ5ELD740';
+                 success(fakeTokenResponse);
              },
              logout: function (success) {
                  tokenClaims = {};
@@ -65,12 +67,17 @@ angular.module('deviceRegistrationApp')
                  return tokenClaims;
              },
              hasValidToken: function () {
-                 if (!$localStorage.token) {
+                 if (typeof $localStorage.token === 'undefined') {
                    return false;
                  }
+
                  var currentTimeInSeconds = (new Date()).getTime() / 1000;
                  if (tokenClaims.exp < currentTimeInSeconds) {
-                    return false;
+                    if (typeof $localStorage.token === 'undefined') {
+                      return false;
+                    } else {
+                      return true;
+                    }
                  } else {
                     return true;
                  }
