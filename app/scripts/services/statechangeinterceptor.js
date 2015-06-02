@@ -15,6 +15,12 @@ angular.module('deviceRegistrationApp')
             if (toState.data.requiresLogin && !authService.hasValidToken()) {
               event.preventDefault();
               $injector.get('$state').go('access.login');
+              return 0;
+            }
+
+            if (toState.data.requiresNotLoggedIn && authService.hasValidToken()) {
+              event.preventDefault();
+              $injector.get('$state').go('app.devices.all');
             }
           }
         }
