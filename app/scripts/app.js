@@ -46,12 +46,20 @@ angular
                 template: '<div ui-view class="fade-in-down"></div>',
                 url: '/devices'
             })
+            .state('app.devices.detail', {
+                url: '/{id:int}',
+                templateUrl: 'views/devices/detail.html'
+            })
             .state('app.devices.all', {
-                url: '/all',
+                url: '',
                 templateUrl: 'views/devices/all.html'
             })
             .state('app.devices.new', {
                 url: '/new',
+                templateUrl: 'views/devices/new.html'
+            })
+            .state('app.devices.edit', {
+                url: '/{id:int}/edit',
                 templateUrl: 'views/devices/new.html'
             })
             .state('access', {
