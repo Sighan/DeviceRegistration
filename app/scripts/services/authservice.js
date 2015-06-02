@@ -28,25 +28,25 @@ angular.module('deviceRegistrationApp')
 
          function getClaimsFromToken() {
              var token = $localStorage.token;
-             var user = {};
+             var claims = {};
              if (typeof token !== 'undefined') {
                  var encoded = token.split('.')[1];
-                 user = JSON.parse(urlBase64Decode(encoded));
+                 claims = JSON.parse(urlBase64Decode(encoded));
              }
-             return user;
+             return claims;
          }
 
          function refreshToken() {
             $http.post(urls.API + '/refresh', $localStorage.token)
             .success(function(res) {
               $localStorage.token = res.token;
-              tokenClaims=getClaimsFromToken;
+              tokenClaims=getClaimsFromToken();
             }).error(function() {
               $localStorage.token = null;
             });
          }
 
-         var tokenClaims = getClaimsFromToken();
+         var tokenClaims;
 
          return {
              signup: function (data, success, error) {
@@ -54,9 +54,11 @@ angular.module('deviceRegistrationApp')
              },
              signin: function (data, success, error) {
                  //$http.post(urls.API + '/signin', data).success(success).error(error)
-                 var fakeTokenResponse=[];
-                 fakeTokenResponse.token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNDY0ODk0Nzk3IiwidGVzdHdlcnQiOiJURVNUIEVSRk9MR1JFSUNIIn0.AX9nKr6MXQu6aVezlzNklEOP7cSCAHiVhQhJ5ELD740';
-                 success(fakeTokenResponse);
+                 var fakeTokenResponse={};
+                 fakeTokenResponse.token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNDY0ODk0Nzk3IiwidXNlcm5hbWUiOiJNYXggTXVzdGVybWFubiJ9.lbbKpjmNPLhQOOmqTYYe6TExWVraLEDMLG_qiPPlR8M';
+                 $localStorage.token=fakeTokenResponse.token;
+                 tokenClaims=getClaimsFromToken();
+                 success();
              },
              logout: function (success) {
                  tokenClaims = {};
@@ -71,8 +73,10 @@ angular.module('deviceRegistrationApp')
                    return false;
                  }
 
+                 tokenClaims = getClaimsFromToken(); //In case of page reload
+
                  var currentTimeInSeconds = (new Date()).getTime() / 1000;
-                 if (tokenClaims.exp < currentTimeInSeconds) {
+                 if (tokenClaims.exp < currentTimeInSeconds && isInt(tokenClaims.exp)) {
                     if (typeof $localStorage.token === 'undefined') {
                       return false;
                     } else {

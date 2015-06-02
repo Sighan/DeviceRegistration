@@ -13,16 +13,14 @@ angular.module('deviceRegistrationApp')
 
             $scope.fakeLogin = function () {
                 console.log('Fake login...');
-                $state.transitionTo('app.devices');
+                $state.go('app.devices');
             };
 
             $scope.signin = function (user, isValid) {
                 if (isValid) {
                     authService.signin(user,
                         function (res) {
-                            $localStorage.token = res.token;
-                            alert(authService.getTokenClaims().testwert);
-                            $state.transitionTo('app.devices.all');
+                            $state.go('app.devices.all');
                         }, function () {
                             //Hier ordentliches errorhandling einbauen
                             alert('Invalid credentials');
@@ -34,7 +32,7 @@ angular.module('deviceRegistrationApp')
                 if (isValid) {
                     authService.signup(user,
                         function () {
-                            $state.transitionTo('app.devices');
+                            $state.go('app.devices');
                         }, function () {
                             //Hier ordentliches errorhandling einbauen
                             alert('Account could not be created');
@@ -44,7 +42,7 @@ angular.module('deviceRegistrationApp')
 
             $scope.logout = function () {
                 authService.logout( function() {
-                  $state.transitionTo('access.login');
+                  $state.go('access.login');
                 });
             }
 

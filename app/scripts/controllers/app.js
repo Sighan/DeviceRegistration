@@ -8,6 +8,7 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('AppCtrl', function ($scope) {
+    .controller('AppCtrl', ['$scope', 'authService', function ($scope, authService) {
         $scope.date = new Date();
-    });
+        $scope.userData = authService.getTokenClaims();
+    }]);

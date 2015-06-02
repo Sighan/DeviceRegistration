@@ -14,7 +14,7 @@ angular.module('deviceRegistrationApp')
           if (typeof toState.data !== 'undefined') {
             if (toState.data.requiresLogin && !authService.hasValidToken()) {
               event.preventDefault();
-              $injector.get('$state').transitionTo('access.login');
+              $injector.get('$state').go('access.login');
             }
           }
         }

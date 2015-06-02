@@ -19,7 +19,7 @@ angular.module('deviceRegistrationApp')
              },
              'responseError': function (response) {
                  if (response.status === 401 || response.status === 403) {
-                     $injector.get('$state').transitionTo('access.login');
+                     $injector.get('$state').go('access.login');
                  }
                  return $q.reject(response);
              }
