@@ -9,10 +9,12 @@
  */
 angular.module('deviceRegistrationApp')
     .controller('DeviceCtrl',['$scope', '$state', '$location', 'deviceService', function ($scope, $state, $location, deviceService) {
+
         $scope.hasMaintenance = false;
         $scope.hasNotification = false;
         $scope.date = new Date();
 
+        //Fill dropdowns with some test values
         $scope.categories = ['Category #1', 'Category #2', 'Category #3'];
         $scope.groups = ['Group #1', 'Group #2', 'Group #3'];
         $scope.mediums = ['Medium #1', 'Medium #2', 'Medium #3'];
@@ -47,7 +49,7 @@ angular.module('deviceRegistrationApp')
 
         $scope.save = function(device) {
             device.id = Math.floor((Math.random() * 50) + 1);
-            if(deviceService.addDevice(device)) {
+            if(deviceService.saveDevice(device)) {
                 $location.path('/devices/all');
             };
         }
@@ -55,7 +57,7 @@ angular.module('deviceRegistrationApp')
 
         }
         $scope.delete = function(device) {
-            if(deviceService.removeDevice(device.id)) {
+            if(deviceService.deleteDevice(device.id)) {
                 $location.path('/devices/all');
             }
         }
@@ -74,11 +76,5 @@ angular.module('deviceRegistrationApp')
                 form.$setUntouched();
             }
             $scope.device = angular.copy($scope.master);
-        };
-
-
-        if(angular.isNumber($state.params.id)) {
-            $scope.get($state.params.id);
-            console.log($scope.device);
         };
     }]);

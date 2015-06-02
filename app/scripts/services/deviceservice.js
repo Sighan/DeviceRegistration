@@ -13,10 +13,7 @@ angular.module('deviceRegistrationApp')
 
         var devices = [];
         return {
-            users: function () {
-                return [].concat(devices);
-            },
-            addDevice: function (device) {
+            saveDevice: function (device) {
                 devices.push(device);
                 return true;
             },
@@ -24,9 +21,9 @@ angular.module('deviceRegistrationApp')
                 return _.find(devices, function(obj) { return obj.id == id; });
             },
             loadDevices: function (options) {
-                return devices;
+                return [].concat(devices);
             },
-            removeDevice: function (id) {
+            deleteDevice: function (id) {
                 return (devices = _.reject(devices, function(obj){ return obj.id == id; }));
             },
             updateDevice: function (device) {
