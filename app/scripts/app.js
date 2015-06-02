@@ -23,7 +23,7 @@ angular
     'ngStorage',
     'ui.select'
   ]).constant('urls', {
-        API: 'http://<hier api domain eingeben>'
+        API: 'http://private-72e83-devreg.apiary-mock.com/api'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         //

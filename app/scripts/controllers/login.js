@@ -44,6 +44,6 @@ angular.module('deviceRegistrationApp')
                 authService.logout( function() {
                   $state.go('access.login');
                 });
-            }
+            };
 
         }]);

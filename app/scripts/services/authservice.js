@@ -53,16 +53,21 @@ angular.module('deviceRegistrationApp')
                  $http.post(urls.API + '/signup', data).success(success).error(error);
              },
              signin: function (data, success, error) {
-                 //$http.post(urls.API + '/signin', data).success(success).error(error)
-                 var fakeTokenResponse={};
-                 fakeTokenResponse.token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNDY0ODk0Nzk3IiwidXNlcm5hbWUiOiJNYXggTXVzdGVybWFubiJ9.lbbKpjmNPLhQOOmqTYYe6TExWVraLEDMLG_qiPPlR8M';
-                 $localStorage.token=fakeTokenResponse.token;
-                 tokenClaims=getClaimsFromToken();
-                 success();
+                 var loginRequest = {};
+                 loginRequest.EmailAddress = data.email;
+                 loginRequest.Password = data.pass;
+
+                 $http.post(urls.API + '/Authorization/Login', loginRequest).success(function (){
+                    var fakeToken='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIxNDY0ODk0Nzk3IiwidXNlcm5hbWUiOiJNYXggTXVzdGVybWFubiJ9.lbbKpjmNPLhQOOmqTYYe6TExWVraLEDMLG_qiPPlR8M';
+                    $localStorage.token=fakeToken;
+                    tokenClaims=getClaimsFromToken();
+                    success();
+                 }).error(error);
              },
              logout: function (success) {
                  tokenClaims = {};
                  delete $localStorage.token;
+
                  success();
              },
              getTokenClaims: function () {
