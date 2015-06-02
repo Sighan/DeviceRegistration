@@ -21,7 +21,7 @@ angular.module('deviceRegistrationApp')
 
         //Add some test devices
         for(var i=1; i<=5; i++) {
-            deviceService.addDevice(
+            deviceService.saveDevice(
                 {
                     id: i,
                     category: 'Flow',
