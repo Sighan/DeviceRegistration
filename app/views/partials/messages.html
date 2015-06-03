@@ -1,23 +1,12 @@
 <div ng-controller="MessageCtrl">
-  <div class="alert alert-danger m-t-md" ng-show="errors.length>0" role="alert">
-    <div ng-repeat="error in errors">
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only">Error:</span>
-      <span> {{::error}}</span>
+    <div ng-repeat="message in messages" class="">
+        <div class="alert m-n"
+             ng-class="{ 'alert-danger': message.type=='error' , 'alert-warning': message.type=='warn', 'alert-info ': message.type=='info'  }"
+             role="alert">
+            <div class="container">
+                <span class="glyphicon glyphicon-exclamation-sign m-r-xs" aria-hidden="true"></span>
+                <span> {{::message.message}}</span>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="alert alert-warning m-t-md" ng-repeat='warn in warns' role="alert">
-    <div ng-repeat="warn in warns">
-      <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-      <span class="sr-only">Warning:</span>
-      <span> {{::warn}}</span>
-    </div>
-  </div>
-  <div class="alert alert-info m-t-md" ng-repeat='info in infos' role="alert">
-    <div ng-repeat="info in infos">
-      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      <span class="sr-only">Info:</span>
-      <span> {{::info}}</span>
-    </div>
-  </div>
 </div>

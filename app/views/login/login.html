@@ -1,39 +1,39 @@
 <div class="container w-xxxl w-auto-x p-t-xxl text-center">
     <h1 class="logo text-center text-white m-b-xl font-bold"><span class="glyphicon glyphicon-unchecked"></span></h1>
 
-    <div class="panel b-a r-n">
+    <div class="login panel b-a r-n">
         <div class="panel-heading text-muted">
             <h3 class="font-thin m-t-md m-b-n">Log in to your account</h3>
         </div>
-      <div data-ng-include="'views/partials/messages.html'"></div>
-      <div class="panel-body wrapper-lg">
-          <form name="login" role="form">
-              <div class="form-group">
-                  <div class="input-group">
+        <div class="panel-body wrapper-lg">
+            <div class="m-b-md" data-ng-include="'views/partials/messages.html'"></div>
+            <form name="login" role="form">
+                <div class="form-group">
+                    <div class="input-group">
                       <span class="input-group-addon bg-white text-muted">
                       <i class="glyphicon glyphicon-user"></i>
                       </span>
-                      <input type="email" class="form-control input-lg" placeholder="Email address"
-                             ng-model="user.email">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <div class="input-group">
+                        <input type="email" class="form-control input-lg" placeholder="Email address"
+                               ng-model="user.email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
                       <span class="input-group-addon bg-white text-muted">
                       <i class="glyphicon glyphicon-lock"></i>
                       </span>
-                      <input type="password" class="form-control input-lg " placeholder="Password"
-                             ng-model="user.pass">
-                  </div>
-              </div>
+                        <input type="password" class="form-control input-lg " placeholder="Password"
+                               ng-model="user.pass">
+                    </div>
+                </div>
 
-              <button type="submit" ng-click="signin(user,login.$valid)" class="btn btn-lg btn-primary btn-block">
-                  Login
-              </button>
-          </form>
-      </div>
-      <a ui-sref="access.register" class="panel-footer wrapper text-lg">
-          No account? <span class="text-u-l m-l-xs text-primary">Create an account</span>
-      </a>
+                <button type="submit" ng-click="signin(user,login.$valid)" class="btn btn-lg btn-primary btn-block">
+                    Login
+                </button>
+            </form>
+        </div>
+        <a ui-sref="access.register" class="panel-footer wrapper text-lg">
+            No account? <span class="text-u-l m-l-xs text-primary">Create an account</span>
+        </a>
     </div>
 </div>

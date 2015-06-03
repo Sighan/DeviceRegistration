@@ -21,10 +21,6 @@ angular.module('deviceRegistrationApp')
                     if (user.hasOwnProperty('pass') && user.hasOwnProperty('email')) {
                       authService.signin(user,
                         function (res) {
-                            messageService.logInfo('Dies ist eine Info');
-                            messageService.logError('TestFehlerLog 1');
-                            messageService.logError('TestFeherLog 2');
-                            messageService.logWarn("Dies ist eine Warnung");
                             $state.go('app.devices.all');
                         }, function () {
                             messageService.logError('Invalig credentials');
