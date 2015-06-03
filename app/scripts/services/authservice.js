@@ -82,7 +82,7 @@ angular.module('deviceRegistrationApp')
                  tokenClaims = getClaimsFromToken(); //In case of page reload
 
                  var currentTimeInSeconds = (new Date()).getTime() / 1000;
-                 if (tokenClaims.exp < currentTimeInSeconds && isInt(tokenClaims.exp)) {
+                 if (tokenClaims.exp < currentTimeInSeconds && tokenClaims.exp === parseInt(tokenClaims.exp, 10)) {
                     refreshToken();
                     if (typeof $localStorage.token === 'undefined') {
                       return false;
