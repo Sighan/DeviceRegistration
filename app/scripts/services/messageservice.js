@@ -13,13 +13,24 @@ angular.module('deviceRegistrationApp')
         var messages = [];
 
         function runUpdateFunctions() {
-            angular.forEach(callbackFunctions, function (callback) {
+            callbackFunctions.forEach( function (callback) {
                 callback();
             });
         }
 
-        function clear() {
-            messages = [];
+        function clearMessagesByType(type) {
+            type = type || 'all';
+            if (type==='all') {
+              messages = [];
+              return;
+            }
+
+            var newMessageList = [];
+            messages.forEach(function (entry) {
+                if (entry.type !== type) {
+                    newMessageList.push(entry);
+                }
+            });
         }
 
         function logEntry(message, type) {
@@ -30,13 +41,33 @@ angular.module('deviceRegistrationApp')
         }
 
         function getMessagesByType(type) {
+            type = type || 'all';
+            if (type === 'all') {
+              return messages;
+            }
             var messageList = [];
             messages.forEach(function (entry) {
                 if (entry.type === type) {
-                    messageList.push(entry.message);
+                    messageList.push(entry);
                 }
             });
             return messageList;
+        }
+
+        function messageComparator(a,b) {
+          var typeOrder={
+            'error': 1,
+            'warn': 2,
+            'info': 3
+          };
+
+          if (typeOrder[a.type]>typeOrder[b.type]) {
+            return 1;
+          }
+          if (typeOrder[a.type]<typeOrder[b.type]) {
+            return -1;
+          }
+          return 0;
         }
 
 
@@ -50,18 +81,20 @@ angular.module('deviceRegistrationApp')
             logInfo: function (message) {
                 logEntry(message, 'info');
             },
-            getMessages: function () {
-                return messages;
+            getMessages: function (type) {
+                var messageList = getMessagesByType(type);
+                messageList.sort(messageComparator);
+                return messageList;
             },
-            clear: function () {
-                clear();
+            clear: function (type) {
+                clearMessagesByType(type);
             },
             onUpdate: function (callbackFunction) {
                 callbackFunctions.push(callbackFunction);
             },
-            printAndClear: function () {
+            printAndClear: function (type) {
                 runUpdateFunctions();
-                clear();
+                clearMessagesByType(type);
             },
             print: function () {
                 runUpdateFunctions();

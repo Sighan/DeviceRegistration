@@ -4,7 +4,7 @@
              ng-class="{ 'alert-danger': message.type=='error' , 'alert-warning': message.type=='warn', 'alert-info ': message.type=='info'  }"
              role="alert">
             <div class="container">
-                <span class="glyphicon glyphicon-exclamation-sign m-r-xs" aria-hidden="true"></span>
+                <span class="glyphicon m-r-xs" ng-class="{ 'glyphicon-exclamation-sign': message.type=='error', 'glyphicon-warning-sign': message.type=='warn', 'glyphicon-info-sign': message.type=='info' }" aria-hidden="true"></span>
                 <span> {{::message.message}}</span>
             </div>
         </div>
