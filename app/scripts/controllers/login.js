@@ -8,8 +8,10 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('LoginCtrl', ['$scope', '$state', '$localStorage', 'authService', 'messageService',
-        function ($scope, $state, $localStorage, authService, messageService) {
+    .controller('LoginCtrl', ['$scope', '$state', '$localStorage', 'authService', 'messageService', 'valdr',
+        function ($scope, $state, $localStorage, authService, messageService, valdr) {
+
+            console.log(valdr);
 
             $scope.fakeLogin = function () {
                 console.log('Fake login...');

@@ -8,8 +8,10 @@
  *
  * Main module of the application.
  */
-angular
-  .module('deviceRegistrationApp', [
+
+
+var app =
+    angular.module('deviceRegistrationApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -20,16 +22,16 @@ angular
     'ngTouch',
     'ui.router',
     'ui.bootstrap',
-    'ngStorage',
-    'ui.select'
+    'ui.select',
+    'valdr'
   ]).constant('urls', {
         API: 'http://private-72e83-devreg.apiary-mock.com/api'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
-        //
-        // For any unmatched url, redirect to /state1
+
+        // For any unmatched url, redirect to...
         $urlRouterProvider.otherwise('/login');
-        //
+
         // Now set up the states
         $stateProvider
             .state('app', {
