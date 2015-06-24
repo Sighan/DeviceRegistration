@@ -11,30 +11,17 @@ angular.module('deviceRegistrationApp')
     .controller('LoginCtrl', ['$scope', '$state', '$localStorage', 'authService', 'messageService', 'valdr',
         function ($scope, $state, $localStorage, authService, messageService, valdr) {
 
-            console.log(valdr);
-
-            $scope.fakeLogin = function () {
-                console.log('Fake login...');
-                $state.go('app.devices');
-            };
-
             $scope.signin = function (user, isValid) {
-                if (isValid && typeof user !== 'undefined')  {
-                    if (user.hasOwnProperty('pass') && user.hasOwnProperty('email')) {
-                      authService.signin(user,
+                console.log(isValid);
+                if (isValid) {
+                    authService.signin(user,
                         function (res) {
                             $state.go('app.devices.all');
                         }, function () {
                             messageService.logError('Invalig credentials');
                             messageService.printAndClear();
                         });
-                    } else {
-                      messageService.logError('Please enter credentials');
-                      messageService.printAndClear();
-                    }
-                } else {
-                  messageService.logError('Please enter credentials');
-                  messageService.printAndClear();
+
                 }
             };
 
@@ -52,10 +39,12 @@ angular.module('deviceRegistrationApp')
             };
 
             $scope.logout = function () {
-                authService.logout( function() {
-                  messageService.logInfo('You have been logged out.');
-                  $state.go('access.login');
+                authService.logout(function () {
+                    messageService.logInfo('You have been logged out.');
+                    $state.go('access.login');
                 });
             };
 
-        }]);
+        }
+    ])
+;

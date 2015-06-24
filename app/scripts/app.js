@@ -20,6 +20,7 @@ var app =
     'ngSanitize',
     'ngStorage',
     'ngTouch',
+    'ngMaterial',
     'angular.filter',
     'ui.router',
     'ui.bootstrap',
@@ -86,8 +87,14 @@ var app =
                 templateUrl: 'views/login/forgotpwd.html'
             });
 
-        $httpProvider.interceptors.push('requestInterceptor');
-    })
-    .run(function($rootScope, stateChangeInterceptor) {
-      $rootScope.$on('$stateChangeStart', stateChangeInterceptor);
-    });
+            $httpProvider.interceptors.push('requestInterceptor');
+        })
+        .config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('default')
+                .primaryPalette('deep-orange')
+                .accentPalette('blue-grey')
+                .warnPalette('red');
+        })
+        .run(function ($rootScope, stateChangeInterceptor) {
+            $rootScope.$on('$stateChangeStart', stateChangeInterceptor);
+        });
