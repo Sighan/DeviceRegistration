@@ -1,9 +1,11 @@
 <div class="wrapper-md">
-    <div class="row padder-v pos-rlt">
-        <h1 class="m-n font-thin h3">Devices</h1>
+    <div class="row padder-v">
+        <div class="col-sm-12">
+            <h1 class="m-n font-thin h3">Devices</h1>
+        </div>
     </div>
     <div ng-init="getAll()" class="row inline-block padder-v">
-        <div class="col-sm-3" ng-repeat="device in devices track by $index">
+        <div class="col-sm-3" ng-repeat="device in devices | filterBy: ['labels']: search[0] track by $index">
             <div class="panel panel-default hover">
                 <div class="panel-heading">
                     <span ng-show="device.id < 3" class="label bg-primary pull-right">NEW</span>
@@ -15,11 +17,13 @@
                         <li>Category: {{device.category}}</li>
                         <li>Group: {{device.group}}</li>
                     </ul>
-                    <span class="label label-default m-r-xs" ng-repeat="label in device.labels">{{label}}</span>
+                    <span class="label label-default m-r-xs" ng-repeat="label in device.labels track by $index">{{label}}</span>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-icon btn-default" ui-sref="app.devices.edit({id: device.id})"><i class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i class="glyphicon glyphicon-file"></i></button>
+                    <button class="btn btn-icon btn-default" ui-sref="app.devices.edit({id: device.id})"><i
+                            class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i
+                            class="glyphicon glyphicon-file"></i></button>
                 </div>
             </div>
         </div>

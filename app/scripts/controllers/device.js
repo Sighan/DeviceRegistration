@@ -18,6 +18,7 @@ angular.module('deviceRegistrationApp')
         $scope.categories = ['Category #1', 'Category #2', 'Category #3'];
         $scope.groups = ['Group #1', 'Group #2', 'Group #3'];
         $scope.mediums = ['Medium #1', 'Medium #2', 'Medium #3'];
+        $scope.labels = ['Label #1', 'Label #2', 'Label #3'];
 
         //Add some test devices
         for (var i = 1; i <= 5; i++) {
@@ -31,7 +32,7 @@ angular.module('deviceRegistrationApp')
                     medium: 'Cool medium',
                     comment: 'This is just a test device',
                     labels: [
-                        'Label #1', 'Label #2', 'Label #3'
+                        $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))], $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))]
                     ],
                     maintenance: {
                         interval: i + ' months',

@@ -20,6 +20,7 @@ var app =
     'ngSanitize',
     'ngStorage',
     'ngTouch',
+    'angular.filter',
     'ui.router',
     'ui.bootstrap',
     'ui.select',
