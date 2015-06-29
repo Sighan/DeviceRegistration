@@ -8,17 +8,16 @@
         <div class="panel-body wrapper-lg">
             <div class="m-b-md" data-ng-include="'views/partials/messages.html'"></div>
             <form name="login" role="form" novalidate valdr-type="Login">
-                {{violations}}
-                <div class="form-group">
+                <div class="form-group" valdr-form-group>
                     <div class="input-group">
                       <span class="input-group-addon bg-white text-muted">
                       <i class="glyphicon glyphicon-user"></i>
                       </span>
                         <input type="email" name="email" class="form-control input-lg" placeholder="Email address"
-                               ng-model="user.email" required="">
+                               ng-model="user.email">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" valdr-form-group>
                     <div class="input-group">
                       <span class="input-group-addon bg-white text-muted">
                       <i class="glyphicon glyphicon-lock"></i>

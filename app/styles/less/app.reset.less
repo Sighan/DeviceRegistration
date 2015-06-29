@@ -690,3 +690,14 @@ Overrides contextual classes atm
     width: 100%;
   }
 }
+
+.valdr-message {
+  display: none;
+}
+
+form.ng-submitted {
+  .valdr-message.ng-invalid {
+    display: inline;
+    color: @brand-danger;
+  }
+}
