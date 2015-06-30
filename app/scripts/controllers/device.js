@@ -19,6 +19,7 @@ angular.module('deviceRegistrationApp')
         $scope.groups = ['Group #1', 'Group #2', 'Group #3'];
         $scope.mediums = ['Medium #1', 'Medium #2', 'Medium #3'];
         $scope.labels = ['Label #1', 'Label #2', 'Label #3'];
+        $scope.ranges = ['Weekly', 'Monthly'];
 
         //Add some test devices
         for (var i = 1; i <= 5; i++) {
@@ -46,12 +47,14 @@ angular.module('deviceRegistrationApp')
             );
         }
 
-        $scope.save = function (device) {
-            if (!angular.isNumber(device.id)) {
-                device.id = Math.floor((Math.random() * 100) + 1);
-            }
-            if (deviceService.saveDevice(device)) {
-                $location.path('/devices');
+        $scope.save = function (device, valid) {
+            if (valid) {
+                if (!angular.isNumber(device.id)) {
+                    device.id = Math.floor((Math.random() * 100) + 1);
+                }
+                if (deviceService.saveDevice(device)) {
+                    $location.path('/devices');
+                }
             }
         };
         $scope.update = function () {
