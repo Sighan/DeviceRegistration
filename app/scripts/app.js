@@ -66,6 +66,11 @@ var app =
                 url: '/{id:int}/edit',
                 templateUrl: 'views/devices/new.html'
             })
+            .state('app.admin', {
+                url: '/admin',
+                controller: 'AdminCtrl',
+                templateUrl: 'views/admin/admin.html'
+            })
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
