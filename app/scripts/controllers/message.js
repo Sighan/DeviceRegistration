@@ -8,12 +8,17 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-  .controller('MessageCtrl', ['$scope', 'messageService', function ($scope, messageService) {
+    .controller('MessageCtrl', ['$scope', 'messageService', function ($scope, messageService) {
 
-     function update() {
-        $scope.messages=messageService.getMessages();
-     }
-     messageService.onUpdate(update);
+        function update() {
+            $scope.messages = messageService.getMessages();
+        }
 
-     messageService.printAndClear();
-  }]);
+        $scope.dismiss = function (type) {
+            messageService.printAndClear(type);
+        }
+
+        messageService.onUpdate(update);
+
+        messageService.printAndClear();
+    }]);

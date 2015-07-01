@@ -72,6 +72,9 @@ angular.module('deviceRegistrationApp')
 
 
         return {
+            logSuccess: function (message) {
+                logEntry(message, 'success');
+            },
             logError: function (message) {
                 logEntry(message, 'error');
             },

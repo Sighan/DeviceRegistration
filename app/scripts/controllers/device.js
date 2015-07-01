@@ -8,7 +8,7 @@
  * Controller of the deviceRegistrationApp
  */
 angular.module('deviceRegistrationApp')
-    .controller('DeviceCtrl', ['$scope', '$state', '$location', 'deviceService', function ($scope, $state, $location, deviceService) {
+    .controller('DeviceCtrl', ['$scope', '$state', '$location', 'deviceService', 'messageService', function ($scope, $state, $location, deviceService, messageService) {
 
         $scope.hasMaintenance = false;
         $scope.hasNotification = false;
@@ -47,13 +47,15 @@ angular.module('deviceRegistrationApp')
             );
         }
 
-        $scope.save = function (device, valid) {
-            if (valid) {
+        $scope.save = function (device, isValid) {
+            if (isValid) {
                 if (!angular.isNumber(device.id)) {
                     device.id = Math.floor((Math.random() * 100) + 1);
                 }
                 if (deviceService.saveDevice(device)) {
                     $location.path('/devices');
+                    messageService.logSuccess('Device saved successfully');
+                    messageService.printAndClear();
                 }
             }
         };
