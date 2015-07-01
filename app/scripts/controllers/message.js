@@ -16,7 +16,7 @@ angular.module('deviceRegistrationApp')
 
         $scope.dismiss = function (type) {
             messageService.printAndClear(type);
-        }
+        };
 
         messageService.onUpdate(update);
 
