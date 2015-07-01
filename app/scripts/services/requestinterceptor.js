@@ -12,8 +12,8 @@ angular.module('deviceRegistrationApp')
          return {
              'request': function (config) {
                  config.headers = config.headers || {};
-                 if ($localStorage.token) {
-                     config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                 if (typeof($localStorage.token) !== 'undefined') {
+                     config.headers.Authorization = 'Token ' + $localStorage.token;
                  }
                  return config;
              },
@@ -21,6 +21,9 @@ angular.module('deviceRegistrationApp')
                  if (response.status === 401 || response.status === 403) {
                      messageService.logError(response.statusText);
                      $injector.get('$state').go('access.login');
+                     if (response.status === 401) {
+                       delete $localStorage.token;
+                     }
                  }
                  return $q.reject(response);
              }

@@ -16,6 +16,8 @@ angular.module('deviceRegistrationApp')
                 if (isValid) {
                     authService.signin(user,
                         function (res) {
+                            messageService.logError("test");
+                            messageService.logInfo("test");
                             $state.go('app.devices.all');
                         }, function () {
                             messageService.logError('Invalig credentials');

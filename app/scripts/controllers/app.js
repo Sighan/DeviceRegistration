@@ -10,5 +10,5 @@
 angular.module('deviceRegistrationApp')
     .controller('AppCtrl', ['$scope', 'authService', function ($scope, authService) {
         $scope.date = new Date();
-        $scope.userData = authService.getTokenClaims();
+        //$scope.userData = authService.getTokenClaims();
     }]);
