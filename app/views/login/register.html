@@ -1,39 +1,34 @@
-<div class="container w-xxxl w-auto-x p-t-xxl">
+<div class="container w-xxxl w-auto-x p-t-xxl text-center">
     <h1 class="logo text-center text-white m-b-xl font-bold"><span class="glyphicon glyphicon-unchecked"></span></h1>
 
     <div class="panel b-a r-n">
-
-        <div class="panel-heading text-muted text-center">
+        <div class="panel-heading text-muted">
             <h3 class="font-thin m-t-md m-b-n">Sign up and gain access</h3>
         </div>
         <div class="panel-body wrapper-lg">
-            <form name="registerForm" role="form">
-                <md-input-container>
-                    <label>First name</label>
-                    <input ng-model="user.firstname" name="firstName" type="text"
-                           required>
-                </md-input-container>
-                <md-input-container>
-                    <label>Last name</label>
-                    <input ng-model="user.lastname" name="lastName" type="text"
-                           required>
-                </md-input-container>
-                <md-input-container>
-                    <label>Email</label>
-                    <input ng-model="user.email" name="email" type="text"
-                           required>
-                </md-input-container>
-                <md-input-container>
-                    <label>Invitation code</label>
-                    <input ng-model="user.serial" name="serial" type="text"
-                           required>
-                </md-input-container>
-                <md-button class="md-raised md-primary btn-block" ng-click="signup(user,registerForm.$valid)">Create
-                    Account
-                </md-button>
+            <form name="register" role="form">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="First name"
+                           ng-model="user.firstname">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Last name"
+                           ng-model="user.lastname">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control input-lg" placeholder="Email address"
+                           ng-model="user.email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Invitation code"
+                           ng-model="user.serial">
+                </div>
+                <button type="submit" ng-click="signup(user,register.$valid)" class="btn btn-lg btn-primary btn-block">
+                    Create Account
+                </button>
             </form>
         </div>
-        <a ui-sref="access.login" class="panel-footer wrapper text-lg text-center">
+        <a ui-sref="access.login" class="panel-footer wrapper text-lg">
             Already have an account? <span class="text-u-l m-l-xs text-primary">Sign In</span>
         </a>
     </div>

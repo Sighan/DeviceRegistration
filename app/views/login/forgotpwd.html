@@ -6,14 +6,20 @@
             <h3 class="font-thin m-t-md m-b-n">Reset Password</h3>
         </div>
         <div class="panel-body wrapper-lg">
-            <form name="formReset" role="form">
-                <md-input-container>
-                    <md-icon md-font-icon="mdi mdi-account" class="text-2x name"></md-icon>
-                    <input ng-model="user.email" name="email" type="text" placeholder="Email" ng-required="true">
-                </md-input-container>
+            <form ame="reset" role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon bg-white text-muted">
+                        <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input type="email" class="form-control input-lg" placeholder="Email address"
+                               ng-model="user.email">
+                    </div>
+                </div>
 
-                <md-button class="md-raised md-primary btn-block" ng-click="">Reset Password
-                </md-button>
+                <button type="submit" ng-click="" class="btn btn-lg btn-primary btn-block">
+                    Reset Password
+                </button>
             </form>
         </div>
         <a ui-sref="access.login" class="panel-footer wrapper text-lg">
