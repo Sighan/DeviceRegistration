@@ -55,7 +55,7 @@ angular.module('deviceRegistrationApp')
                 if (deviceService.saveDevice(device)) {
                     $location.path('/devices');
                     messageService.logSuccess('Device saved successfully');
-                    //messageService.printAndClear();
+                    messageService.print();
                 }
             }
         };
