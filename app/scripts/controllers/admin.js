@@ -9,11 +9,24 @@
  */
 angular.module('deviceRegistrationApp')
     .controller('AdminCtrl', function ($scope, $interval, uuid4) {
-        $scope.invite = function (user, isValid) {
+
+        var user = {
+            email: '',
+            firstname: '',
+            lastname: ''
+        }
+        $scope.users = [];
+        $scope.users.push(user);
+
+        $scope.invite = function (users, isValid) {
             if (isValid) {
-                $scope.invited = true;
+                console.log(users);
             }
         };
+
+        $scope.addInvite = function () {
+            $scope.users.push(angular.copy(user));
+        }
 
         //This piece of code is shit
         //Fakes progress with $interval

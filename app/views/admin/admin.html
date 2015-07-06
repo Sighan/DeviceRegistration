@@ -12,29 +12,39 @@
                     <h3><i class="mdi mdi-send m-r-sm text-primary"></i>Invite <strong>Collaborators</strong></h3>
 
                     <form name="inviteForm" class="m-t-md" role="form" novalidate valdr-type="Invite">
-                        <div class="row">
+                        <div class="row pos-rlt" ng-repeat="user in users track by $index">
                             <div class="col-md-6">
                                 <div class="form-group" valdr-form-group>
                                     <label class="font-bold">Email Address</label>
-                                    <input type="email" name="email" ng-model="user.email" class="form-control block" placeholder="name@domain.com">
+                                    <input type="email" name="email" ng-model="user.email" class="form-control block"
+                                           placeholder="name@domain.com">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group" valdr-form-group>
                                     <label class="font-bold">First Name</label>
-                                    <input type="text" name="firstName" ng-model="user.firstname" class="form-control block" placeholder="(optional)">
+                                    <input type="text" name="firstName" ng-model="user.firstname"
+                                           class="form-control block" placeholder="(optional)">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group" valdr-form-group>
                                     <label class="font-bold">Last Name</label>
-                                    <input type="text" name="lastName" ng-model="user.lastname"  class="form-control block" placeholder="(optional)">
+                                    <input type="text" name="lastName" ng-model="user.lastname"
+                                           class="form-control block" placeholder="(optional)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-b-md">
+                            <div class="col-md-12">
+                                <div class="wrapper-sm">
+                                    <a ng-click="addInvite()"><strong>+ Add another</strong></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" ng-click="invite(user,inviteForm.$valid)"
+                                <button type="submit" ng-click="invite(users,inviteForm.$valid)"
                                         class="btn btn-lg btn-primary btn-block">Invite
                                 </button>
                             </div>
@@ -60,10 +70,8 @@
                 </md-content>
             </md-tab>
             <md-tab label="company">
-                <md-content class="md-padding">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus
-                        volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
-                        ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                <md-content>
+
                 </md-content>
             </md-tab>
         </md-tabs>
