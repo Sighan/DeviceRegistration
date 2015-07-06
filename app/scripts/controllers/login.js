@@ -42,8 +42,8 @@ angular.module('deviceRegistrationApp')
 
             $scope.logout = function () {
                 authService.logout(function () {
-                    messageService.logInfo('You have been logged out.');
                     $state.go('access.login');
+                    messageService.logInfo('You have been logged out.');
                 });
             };
 
