@@ -64,7 +64,7 @@ angular.module('deviceRegistrationApp')
         };
         $scope.delete = function (device) {
             if (deviceService.deleteDevice(device.id)) {
-                $location.path('/devices');
+                $scope.getAll();
             }
         };
         $scope.get = function () {

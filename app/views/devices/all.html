@@ -3,11 +3,8 @@
         <div class="md-toolbar-tools">
             <h2 class="m-n">View <strong>Devices</strong></h2>
             <span flex></span>
-            <md-button class="md-icon-button" aria-label="List">
+            <md-button ng-disabled="true" class="md-icon-button" aria-label="List">
                 <md-icon md-font-icon="mdi mdi-view-list" class="text-2x"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Module">
-                <md-icon md-font-icon="mdi mdi-view-module" class="text-2x"></md-icon>
             </md-button>
         </div>
     </div>
@@ -16,7 +13,10 @@
         <div class="col-md-3" ng-repeat="device in devices | filterBy: ['labels']: search[0] track by $index">
             <md-card>
                 <md-card-content>
-                    <h3 class="md-title m-t-xs">{{device.designation}}</h3>
+                    <h3 class="md-title m-t-xs inline">{{device.designation}}</h3>
+                    <md-button ng-click="delete(device)" class="md-icon-button" style="position: absolute; top: 5px; right: 10px;" aria-label="Delete">
+                        <md-icon md-font-icon="mdi mdi-delete-variant" class="text-lg" aria-label="Cake"></md-icon>
+                    </md-button>
                     <ul class="list-unstyled">
                         <li>Serial number: {{device.serial}}</li>
                         <li>Category: {{device.category}}</li>
@@ -25,7 +25,7 @@
                     <span class="label label-default m-r-xs" ng-repeat="label in device.labels track by $index">{{label}}</span>
                 </md-card-content>
                 <md-divider></md-divider>
-                <div class="md-actions" layout="row" layout-align="end center">
+                <div class="md-actions" layout="row" layout-align="center">
                     <md-button ui-sref="app.devices.edit({id: device.id})">Edit</md-button>
                     <md-button ui-sref="app.devices.detail({id: device.id})">View</md-button>
                 </div>
