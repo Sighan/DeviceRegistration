@@ -52,7 +52,7 @@
                             </div>
                             <div ng-hide="token">
                                 <button type="submit" ng-click="generate()" class="btn btn-lg btn-primary btn-block">
-                                    {{progress<10 ? 'Generate...' : 'Generate Code'}}
+                                    {{progress==0 ? 'Generate Code' : 'Generate...'}}
                                 </button>
                             </div>
                         </div>

@@ -15,8 +15,10 @@ angular.module('deviceRegistrationApp')
             }
         };
 
+        //This piece of code is shit
+        //Fakes progress with $interval
+        $scope.progress = 0;
         $scope.generate = function () {
-            $scope.progress = 0;
             $interval(function () {
                 $scope.progress++;
                 if ($scope.progress === 5) {
