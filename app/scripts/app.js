@@ -25,7 +25,8 @@ var app =
     'ui.router',
     'ui.bootstrap',
     'ui.select',
-    'valdr'
+    'valdr',
+    'uuid4'
   ]).constant('urls', {
         API: 'http://private-72e83-devreg.apiary-mock.com/api'
     })

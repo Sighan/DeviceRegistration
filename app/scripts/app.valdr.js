@@ -3,6 +3,16 @@
     'use strict';
     app.config(function (valdrProvider, valdrMessageProvider) {
         valdrProvider.addConstraints({
+            'Invite': {
+                'email': {
+                    'required': {
+                        'message': 'This field is required.'
+                    },
+                    'email': {
+                        'message': 'Not a valid e-mail address.'
+                    }
+                }
+            },
             'Login': {
                 'email': {
                     'required': {

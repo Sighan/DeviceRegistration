@@ -1,20 +1,65 @@
 <div class="wrapper-md">
     <div class="row">
         <div class="md-toolbar-tools">
-            <h1 class="m-n h3">Admin</h1>
+            <h2 class="m-n">Admin</h2>
             <span flex></span>
         </div>
     </div>
     <div class="row padder-v">
         <md-tabs md-dynamic-height="true" md-center-tabs="false" md-border-bottom md-stretch-tabs>
             <md-tab label="invite">
-                <md-content class="md-padding">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus
-                        volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
-                        ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                <md-content class="container w-auto-x m-t-lg" style="width: 60%;">
+                    <h3><i class="mdi mdi-send m-r-sm text-primary"></i>Invite <strong>Collaborators</strong></h3>
+
+                    <form name="inviteForm" class="m-t-md" role="form" novalidate valdr-type="Invite">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" valdr-form-group>
+                                    <label class="font-bold">Email Address</label>
+                                    <input type="email" name="email" ng-model="user.email" class="form-control block" placeholder="name@domain.com">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" valdr-form-group>
+                                    <label class="font-bold">First Name</label>
+                                    <input type="text" name="firstName" ng-model="user.firstname" class="form-control block" placeholder="(optional)">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" valdr-form-group>
+                                    <label class="font-bold">Last Name</label>
+                                    <input type="text" name="lastName" ng-model="user.lastname"  class="form-control block" placeholder="(optional)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" ng-click="invite(user,inviteForm.$valid)"
+                                        class="btn btn-lg btn-primary btn-block">Invite
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row text-center wrapper-lg">
+                        <div class="col-md-12">
+                            <span class="h1 font-bold">OR</span>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div ng-show="token" class="wrapper-xs b b-2x b-primary">
+                                <span class="text-lg">{{token}}</span>
+                            </div>
+                            <div ng-hide="token">
+                                <button type="submit" ng-click="generate()" class="btn btn-lg btn-primary btn-block">
+                                    {{progress<10 ? 'Generate...' : 'Generate Code'}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </md-content>
             </md-tab>
-            <md-tab label="settings">
+            <md-tab label="company">
                 <md-content class="md-padding">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus
                         volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium
