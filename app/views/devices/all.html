@@ -1,7 +1,7 @@
 <div class="wrapper-md">
     <div class="row">
         <div class="md-toolbar-tools">
-            <h3 class="m-n">View <strong>Devices</strong></h3>
+            <h2 class="m-n">View <strong>Devices</strong></h2>
             <span flex></span>
             <md-button class="md-icon-button" aria-label="List">
                 <md-icon md-font-icon="mdi mdi-view-list" class="text-2x"></md-icon>
@@ -11,28 +11,25 @@
             </md-button>
         </div>
     </div>
+    <md-divider></md-divider>
     <div ng-init="getAll()" class="row inline-block padder-v">
-        <div class="col-sm-3" ng-repeat="device in devices | filterBy: ['labels']: search[0] track by $index">
-            <div class="panel panel-default hover">
-                <div class="panel-heading">
-                    <span ng-show="device.id < 3" class="label bg-primary pull-right">NEW</span>
-                    <h4 class="m-n">{{device.designation}}</h4>
-                </div>
-                <div class="panel-body">
+        <div class="col-md-3" ng-repeat="device in devices | filterBy: ['labels']: search[0] track by $index">
+            <md-card>
+                <md-card-content>
+                    <h3 class="md-title m-t-xs">{{device.designation}}</h3>
                     <ul class="list-unstyled">
                         <li>Serial number: {{device.serial}}</li>
                         <li>Category: {{device.category}}</li>
                         <li>Group: {{device.group}}</li>
                     </ul>
                     <span class="label label-default m-r-xs" ng-repeat="label in device.labels track by $index">{{label}}</span>
+                </md-card-content>
+                <md-divider></md-divider>
+                <div class="md-actions" layout="row" layout-align="end center">
+                    <md-button ui-sref="app.devices.edit({id: device.id})">Edit</md-button>
+                    <md-button ui-sref="app.devices.detail({id: device.id})">View</md-button>
                 </div>
-                <div class="panel-footer">
-                    <button class="btn btn-icon btn-default" ui-sref="app.devices.edit({id: device.id})"><i
-                            class="glyphicon glyphicon-edit"></i></button>
-                    <button class="btn btn-icon btn-default" ui-sref="app.devices.detail({id: device.id})"><i
-                            class="glyphicon glyphicon-file"></i></button>
-                </div>
-            </div>
+            </md-card>
         </div>
     </div>
 </div>

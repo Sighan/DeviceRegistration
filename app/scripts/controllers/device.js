@@ -33,7 +33,7 @@ angular.module('deviceRegistrationApp')
                     medium: 'Cool medium',
                     comment: 'This is just a test device',
                     labels: [
-                        $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))], $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))]
+                        $scope.labels[Math.floor((Math.random() * $scope.labels.length))], $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))]
                     ],
                     maintenance: {
                         interval: i + ' months',
