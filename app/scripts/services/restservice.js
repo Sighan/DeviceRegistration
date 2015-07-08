@@ -6,115 +6,121 @@
  * @description
  * # restService
  * Service in the deviceRegistrationApp.
+ *
+ * Call any function with a request object. The request object may contain the following properties:
+ * load: request content
+ * success: success callback function
+ * error: error callback function
  */
 angular.module('deviceRegistrationApp')
   .service('restService', function ($http, urls) {
 
-    function post(endPoint, data, successCallback, errorCallback) {
-
-      $http.post(urls.API + endPoint, data)
-                        .success(successCallback)
-                        .error(errorCallback);
+    function post(endPoint, request) {
+      if (typeof request==='undefined') {
+        request={};
+      }
+      return $http.post(urls.API + endPoint, request);
     }
+
     return {
       auth: {
-        signIn: function(data,successCallback,errorCallback) {
+        signIn: function(request) {
           var endPoint = '/Authorization/Login';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        signOut: function(successCallback,errorCallback) {
+        signOut: function(request) {
           var endPoint = '/Authorization/Logout';
-          post(endPoint,null,successCallback,errorCallback);
+          return post(endPoint,request);
         }
       },
       user: {
-        add: function(data, successCallback,errorCallback) {
+        add: function(request) {
           var endPoint = '/User/AddUser';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        update: function(data,successCallback,errorCallback) {
+        update: function(request) {
           var endPoint = '/User/ModUser';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        get: function(data,successCallback,errorCallback){
+        get: function(request){
           var endPoint = '/User/GetUserByMail';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        createInvitation: function(data,successCallback,errorCallback) {
+        createInvitation: function(request) {
           var endPoint = '/User/AddInvitation';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        changePassword: function(data,successCallback,errorCallback) {
+        changePassword: function(request) {
           var endPoint = '/User/ChangePassword';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        forgotPassword: function(data,successCallback,errorCallback) {
+        forgotPassword: function(request) {
           var endPoint = '/User/SendPasswordRequest';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        disable: function(data,successCallback,errorCallback) {
+        disable: function(request) {
           var endPoint = '/User/Deactivate';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         }
       },
       device: {
-        add: function(data, successCallback,errorCallback) {
+        add: function(request) {
           var endPoint = '/Device/SaveUpdateDevice ';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        update: function(data,successCallback,errorCallback) {
+        update: function(request) {
           var endPoint = '/Device/SaveUpdateDevice ';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        getById: function(data,successCallback,errorCallback){
+        getById: function(request){
           var endPoint = '/Device/GetDeviceByID';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        getLabels: function(successCallback,errorCallback) {
+        getLabels: function(request) {
           var endPoint = '/Device/GetLabelsForCompany';
-          post(endPoint,null,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        getCategories: function(successCallback,errorCallback) {
+        getCategories: function(request) {
           var endPoint = '/Device/ChangePassword';
-          post(endPoint,null,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        getGroupsByCategorie: function(data,successCallback,errorCallback) {
+        getGroupsByCategorie: function(request) {
           var endPoint = '/Device/GetGroupsByCategory';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        disable: function(data,successCallback,errorCallback){
-           var endPoint = '/Device/Disbale';
-           post(endPoint,data,successCallback,errorCallback);
+        disable: function(request){
+           var endPoint = '/Device/Disable';
+           return post(endPoint,request);
         },
-        addUser: function(data,successCallback,errorCallback) {
+        addUser: function(request) {
            var endPoint = '/Device/AddUser';
-           post(endPoint,null,successCallback,errorCallback);
+           return post(endPoint,request);
         },
-        removeUser: function(data,successCallback,errorCallback) {
+        removeUser: function(request) {
            var endPoint = '/Device/AddUser';
-           post(endPoint,null,successCallback,errorCallback);
+           return post(endPoint,request);
         },
-        addLabel: function(data,successCallback,errorCallback) {
+        addLabel: function(request) {
            var endPoint = '/Device/AddLabel';
-           post(endPoint,data,successCallback,errorCallback);
+           return post(endPoint,request);
         },
-        getList: function(data, successCallback, errorCallback) {
+        getList: function(request) {
            var endPoint = '/Device/GetList';
-           post(endPoint,data,successCallback,errorCallback);
+           return post(endPoint,request);
         }
       },
       company: {
-        add: function(data, successCallback,errorCallback) {
+        add: function(request) {
           var endPoint = '/Company/Add';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        get: function(successCallback,errorCallback) {
+        get: function(request) {
           var endPoint = '/Company/Get';
-          post(endPoint,null,successCallback,errorCallback);
+          return post(endPoint,request);
         },
-        update: function(data,successCallback,errorCallback) {
+        update: function(request) {
           var endPoint = '/Company/Update';
-          post(endPoint,data,successCallback,errorCallback);
+          return post(endPoint,request);
         }
       }
     };

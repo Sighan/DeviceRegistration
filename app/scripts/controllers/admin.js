@@ -14,7 +14,7 @@ angular.module('deviceRegistrationApp')
             email: '',
             firstname: '',
             lastname: ''
-        }
+        };
         $scope.users = [];
         $scope.users.push(user);
 
@@ -26,7 +26,7 @@ angular.module('deviceRegistrationApp')
 
         $scope.addInvite = function () {
             $scope.users.push(angular.copy(user));
-        }
+        };
 
         //This piece of code is shit
         //Fakes progress with $interval
