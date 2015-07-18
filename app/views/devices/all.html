@@ -3,6 +3,7 @@
         <div class="md-toolbar-tools">
             <h2 class="m-n">View <strong>Devices</strong></h2>
             <span flex></span>
+            <input ng-model="search"/>
             <md-button ng-disabled="true" class="md-icon-button" aria-label="List">
                 <md-icon md-font-icon="mdi mdi-view-list" class="text-2x"></md-icon>
             </md-button>
@@ -10,7 +11,7 @@
     </div>
     <md-divider></md-divider>
     <div ng-init="getAll()" class="row inline-block padder-v">
-        <div class="col-md-3" ng-repeat="device in devices | filterBy: ['labels']: search[0] track by $index">
+        <div class="col-md-3" ng-repeat="device in devices | filter:search track by $index">
             <md-card>
                 <md-card-content>
                     <h3 class="md-title m-t-xs inline">{{device.designation}}</h3>
