@@ -53,9 +53,9 @@ angular.module('deviceRegistrationApp')
                     device.id = Math.floor((Math.random() * 100) + 1);
                 }
                 if (deviceService.saveDevice(device)) {
-                    $location.path('/devices');
-                    messageService.logSuccess('Device saved successfully');
+                    messageService.logSuccess(device.designation + 'saved successfully');
                     messageService.print();
+                    $state.go('app.devices.all');
                 }
             }
         };
@@ -65,6 +65,9 @@ angular.module('deviceRegistrationApp')
         $scope.delete = function (device) {
             if (deviceService.deleteDevice(device.id)) {
                 $scope.getAll();
+                messageService.logSuccess(device.designation + ' deleted.' )
+                messageService.print();
+                $state.go('app.devices.all');
             }
         };
         $scope.get = function () {

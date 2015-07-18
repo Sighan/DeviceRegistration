@@ -16,7 +16,8 @@ angular.module('deviceRegistrationApp')
         }
 
         $scope.dismiss = function (type) {
-            messageService.printAndClear(type);
+            messageService.clear(type);
+            messageService.print();
             angular.element('.header-fixed').css('padding-top', '');
         };
 

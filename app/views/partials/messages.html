@@ -1,6 +1,6 @@
 <div ng-controller="MessageCtrl">
     <div ng-repeat="message in messages">
-        <div class="alert m-n" style="height: 50px;"
+        <div class="alert m-n" style="height: 50px; padding-left:55px;"
              ng-class="{ 'alert-danger': message.type=='error' , 'alert-warning': message.type=='warn', 'alert-info ': message.type=='info', 'alert-success': message.type=='success'  }"
              role="alert">
             <div class="container">
