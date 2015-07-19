@@ -27,7 +27,7 @@
                             <label class="form-label">Labels</label>
                             <p>
                                 <span class="label label-default m-r-xs"
-                                      ng-repeat="label in device.labels track by $index">{{label}}</span>
+                                      ng-repeat="label in device.labels track by $index" ng-click="filterByLabel(label)">{{label}}</span>
                             </p>
                         </div>
                     </div>
