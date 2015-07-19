@@ -22,7 +22,7 @@ angular.module('deviceRegistrationApp')
         $scope.ranges = ['Weekly', 'Monthly'];
 
         //Add some test devices
-        for (var i = 1; i <= 12; i++) {
+        for (var i = 1; i <= 2; i++) {
             deviceService.saveDevice(
                 {
                     id: i,
