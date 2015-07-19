@@ -23,6 +23,7 @@ angular.module('deviceRegistrationApp')
                 else {
                     devices.push(device);
                 }
+                alert("test");
                 return true;
             },
             loadDevice: function (id) {

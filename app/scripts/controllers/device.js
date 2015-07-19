@@ -54,7 +54,7 @@ angular.module('deviceRegistrationApp')
                 if (!angular.isNumber(device.id)) {
                     device.id = Math.floor((Math.random() * 100) + 1);
                 }
-                device.labels = device.labels.split(',');
+                device.labels = String(device.labels).split(",");
                 for (var i = 0, len = device.labels.length; i < len; i++) {
                     device.labels[i] = device.labels[i].trim();
                 }
