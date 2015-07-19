@@ -60,7 +60,6 @@ angular.module('deviceRegistrationApp')
                 }
                 if (deviceService.saveDevice(device)) {
                     messageService.logSuccess(device.designation + ' saved successfully');
-                    messageService.print();
                     $state.go('app.devices.all');
                 }
             }
@@ -72,8 +71,11 @@ angular.module('deviceRegistrationApp')
             if (deviceService.deleteDevice(device.id)) {
                 $scope.getAll();
                 messageService.logSuccess(device.designation + ' deleted.' );
-                messageService.print();
-                $state.go('app.devices.all');
+                if ($state.is('app.devices.all')){
+                  messageService.printAndClear();
+                } else {
+                  $state.go('app.devices.all');
+                }
             }
         };
         $scope.get = function () {
