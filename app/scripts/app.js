@@ -28,7 +28,7 @@ var app =
     'valdr',
     'uuid4'
   ]).constant('urls', {
-        API: 'http://private-72e83-devreg.apiary-mock.com/api'
+        API: '//private-72e83-devreg.apiary-mock.com/api'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
