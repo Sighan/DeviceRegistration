@@ -3,15 +3,14 @@
         <div class="md-toolbar-tools">
             <h2 class="m-n">View <strong>Devices</strong></h2>
             <span flex></span>
-            <md-button ng-click="addRandomDevice()">Create Testdevice</md-button>
 
-          <div class="input-group" style="width:300px">
-              <input size="10" type="text" class="form-control" ng-model="devFilter.search" onFocus="this.setSelectionRange(0, this.value.length)" placeholder="Search">
-              <span class="input-group-btn">
-                <button class="btn btn-default" ng-click="devFilter.search=''" type="button">Clear</button>
-              </span>
-            </div><!-- /input-group -->
-            <md-button ng-disabled="true" class="md-icon-button" aria-label="List">
+            <div class="input-group" style="width:300px">
+                <input type="text" class="form-control" placeholder="Search..." ng-model="devFilter.search"
+                       onFocus="this.setSelectionRange(0, this.value.length)"> <span
+                    class="input-group-addon bg-white text-muted"><i class="glyphicon glyphicon-search"></i></span>
+            </div>
+            <!-- /input-group -->
+            <md-button ng-disabled="true" class="md-icon-button hidden" aria-label="List">
                 <md-icon md-font-icon="mdi mdi-view-list" class="text-2x"></md-icon>
             </md-button>
         </div>
@@ -22,7 +21,8 @@
             <md-card>
                 <md-card-content>
                     <h3 class="md-title m-t-xs inline">{{device.designation}}</h3>
-                    <md-button ng-click="delete(device)" class="md-icon-button" style="position: absolute; top: 5px; right: 10px;" aria-label="Delete">
+                    <md-button ng-click="delete(device)" class="md-icon-button"
+                               style="position: absolute; top: 5px; right: 10px;" aria-label="Delete">
                         <md-icon md-font-icon="mdi mdi-delete-variant" class="text-lg" aria-label="Cake"></md-icon>
                     </md-button>
                     <ul class="list-unstyled">
@@ -30,7 +30,8 @@
                         <li>Category: {{device.category}}</li>
                         <li>Group: {{device.group}}</li>
                     </ul>
-                    <span class="label label-default m-r-xs" ng-repeat="label in device.labels track by $index" ng-click="filterByLabel(label)">{{label}}</span>
+                    <span class="label label-default m-r-xs" ng-repeat="label in device.labels track by $index"
+                          ng-click="filterByLabel(label)">{{label}}</span>
                 </md-card-content>
                 <md-divider></md-divider>
                 <div class="md-actions" layout="row" layout-align="center">
