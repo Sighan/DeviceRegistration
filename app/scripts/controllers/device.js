@@ -13,6 +13,8 @@ angular.module('deviceRegistrationApp')
         $scope.hasMaintenance = false;
         $scope.hasNotification = false;
         $scope.date = new Date();
+        $scope.devFilter = {};
+
 
         //Fill dropdowns with some test values
         $scope.categories = ['Category #1', 'Category #2', 'Category #3'];
@@ -22,7 +24,7 @@ angular.module('deviceRegistrationApp')
         $scope.ranges = ['Weekly', 'Monthly'];
 
         //Add some test devices
-        for (var i = 1; i <= 12; i++) {
+        for (var i = 1; i <= 2; i++) {
             deviceService.saveDevice(
                 {
                     id: i,
@@ -52,10 +54,13 @@ angular.module('deviceRegistrationApp')
                 if (!angular.isNumber(device.id)) {
                     device.id = Math.floor((Math.random() * 100) + 1);
                 }
+                device.labels = String(device.labels).split(",");
+                for (var i = 0, len = device.labels.length; i < len; i++) {
+                    device.labels[i] = device.labels[i].trim();
+                }
                 if (deviceService.saveDevice(device)) {
-                    $location.path('/devices');
-                    messageService.logSuccess('Device saved successfully');
-                    messageService.print();
+                    messageService.logSuccess(device.designation + ' saved successfully');
+                    $state.go('app.devices.all');
                 }
             }
         };
@@ -65,6 +70,12 @@ angular.module('deviceRegistrationApp')
         $scope.delete = function (device) {
             if (deviceService.deleteDevice(device.id)) {
                 $scope.getAll();
+                messageService.logSuccess(device.designation + ' deleted.' );
+                if ($state.is('app.devices.all')){
+                  messageService.printAndClear();
+                } else {
+                  $state.go('app.devices.all');
+                }
             }
         };
         $scope.get = function () {
@@ -86,4 +97,39 @@ angular.module('deviceRegistrationApp')
             }
             $scope.device = angular.copy($scope.master);
         };
+
+        $scope.filterByLabel = function(label) {
+          $scope.devFilter.search=label;
+          $state.go('app.devices.all');
+        };
+
+        $scope.addRandomDevice = function () {
+          var newID = deviceService.loadDevices().length + 1
+          deviceService.saveDevice(
+              {
+                  id: newID,
+                  category: 'Flow',
+                  designation: 'Device #' + newID,
+                  group: 'Magnetic Flowmeters',
+                  serial: '1234-5678-9' + i,
+                  medium: 'Cool medium',
+                  comment: 'This is just a test device',
+                  labels: [
+                      $scope.labels[Math.floor((Math.random() * $scope.labels.length))], $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))]
+                  ],
+                  maintenance: {
+                      interval: newID + ' months',
+                      start: '23.06.2015'
+                  },
+                  notification: {
+                      reminder: newID + ' year',
+                      mail: 'max@mustermann.de'
+                  }
+              }
+          );
+          $scope.devices=deviceService.loadDevices();
+        };
+
+
+
     }]);

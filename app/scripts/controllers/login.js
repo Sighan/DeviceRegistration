@@ -14,32 +14,33 @@ angular.module('deviceRegistrationApp')
             $scope.signin = function (user, isValid) {
                 console.log(isValid);
                 if (isValid) {
-                    authService.signin(user,
-                        function (res) {
+                    authService.signin(user)
+                    .success(function (res) {
                             $state.go('app.devices.all');
-                        }, function () {
+                          })
+                    .error(function () {
                             messageService.logError('Invalig credentials');
                             messageService.printAndClear();
-                        });
-
+                          });
                 }
             };
 
             $scope.signup = function (user, isValid) {
                 if (isValid) {
-                    authService.signup(user,
-                        function () {
+                    authService.signup(user)
+                    .success(function () {
                             $state.go('app.devices');
-                        }, function () {
+                          })
+                    .error(function () {
                             //Hier ordentliches errorhandling einbauen
                             messageService.logError('Account could not be created');
                             messageService.printAndClear();
-                        });
+                          });
                 }
             };
 
             $scope.logout = function () {
-                authService.logout(function () {
+                authService.logout().success(function () {
                     $state.go('access.login');
                     messageService.logInfo('You have been logged out.');
                 });

@@ -12,10 +12,13 @@ angular.module('deviceRegistrationApp')
 
         function update() {
             $scope.messages = messageService.getMessages();
+            angular.element('.header-fixed').css('padding-top', ($scope.messages.length + 1) * 50 + 'px');
         }
 
         $scope.dismiss = function (type) {
-            messageService.printAndClear(type);
+            messageService.clear(type);
+            messageService.print();
+            angular.element('.header-fixed').css('padding-top', '');
         };
 
         messageService.onUpdate(update);

@@ -31,6 +31,7 @@ angular.module('deviceRegistrationApp')
                     newMessageList.push(entry);
                 }
             });
+            messages=newMessageList;
         }
 
         function logEntry(message, type) {
@@ -57,8 +58,9 @@ angular.module('deviceRegistrationApp')
         function messageComparator(a,b) {
           var typeOrder={
             'error': 1,
-            'warn': 2,
-            'info': 3
+            'success': 2,
+            'warn': 3,
+            'info': 4
           };
 
           if (typeOrder[a.type]>typeOrder[b.type]) {
