@@ -16,12 +16,14 @@ angular.module('deviceRegistrationApp')
                  loginRequest.load={};
                  loginRequest.load.EmailAddress = data.email;
                  loginRequest.load.Password = data.pass;
+                 /* This has to happen regardless of context, therefore it's written in the service */
                  return restService.auth.signIn(loginRequest).success(function(res){
                     $localStorage.token=res.AccessToken;
                  });
              },
              logout: function () {
                  delete $localStorage.token;
+                 /* This will probably return nothing, just added it for completion */
                  return restService.auth.signOut();
              },
              hasValidToken: function () {

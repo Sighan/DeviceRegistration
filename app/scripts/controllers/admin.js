@@ -10,6 +10,13 @@
 angular.module('deviceRegistrationApp')
     .controller('AdminCtrl', function ($scope, $interval, uuid4) {
 
+        /* Once the API is finished this can be rewritten to use restService.user.getInivte(). Note that this
+           should either happen via userService, where a new methods would have to be added, or an entirely new
+           service (adminService maybe).
+        */
+
+
+
         var user = {
             email: '',
             firstname: '',

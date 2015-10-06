@@ -7,10 +7,9 @@
  * # restService
  * Service in the deviceRegistrationApp.
  *
- * Call any function with a request object. The request object may contain the following properties:
- * load: request content
- * success: success callback function
- * error: error callback function
+ * Call any function with a request object. The request object should contain all information the API needs. The Token will be added
+ * from the requestInterceptor.
+ * The promise will be returned to the service, the service will either return the promise or act upon it with .success and .error functions.
  */
 angular.module('deviceRegistrationApp')
   .service('restService', function ($http, urls) {
@@ -105,7 +104,7 @@ angular.module('deviceRegistrationApp')
            return post(endPoint,request);
         },
         getList: function(request) {
-           var endPoint = '/Device/GetList';
+           var endPoint = '/Device/GetDeviceList ';
            return post(endPoint,request);
         }
       },

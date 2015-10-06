@@ -1,0 +1,118 @@
+P0 = Höchste Priorität
+
+Anzupassende Endpunkte:
+
+	BEREICH USER
+
+		Generell muss auch hier immer ein Token bei einem Request übergeben werden, sonst haben wir ein riesiges Sicherheitsproblem
+
+		[P0]
+		1) AddUser
+			Hier sollte noch der InviteCode übergeben werden. Somit kann das BackEnd die Zuordnung übernehmen.
+			Bei leerem InviteCode wird halt User ohne Company erstellt oder es kommt die Maske zum Erstellen einer Company.
+
+		[P0]
+		2) GetUserByMail:
+			UserPassword, Confirm, die UserQuestion und Answer haben hier alle nichts verloren. Auch die Role ist fragwürdig, diese wird ja eigentlich nur im Backend benötigt.
+
+		[P1]
+		3) AddInvitation:
+		 	Hier sollte im Request nur stehen, welche Rolle der einzuladende User bekommen soll. Anhand des Tokens können wir den erstellenden User und seine Company feststellen, dann wird ein Invitationcode generiert und dem erstellenden User angezeigt, diesen kann er dann an wen auch immer weiter senden.
+
+		[P2]
+		4) SendPasswordRequest
+			Ich würde erstmal drüber nachdenken, ob wir den umbenennen. So weiß man nicht auf anhieb, was der Endpunkt macht. Weiterhin müsste mal definiert werden, was hier überhaupt übergeben wird.
+
+		[P2]
+		5) ModUser:
+			Hier müssten wir auch mal genau definieren, was anpassbar sein soll.
+
+	BEREICH DEVICE
+
+		[BESPRECHEN]
+		1) GetLabels/GetLabelsForCompany
+			Wo liegt denn hier der Unterschied? Man würde wenn dann doch ohnehin nur GetLabelsForCompany haben wollen, wozu dann das andere überhaupt haben? Meiner Ansicht nach nur ein Sicherheitsrisiko.
+
+		[P1]
+		2) SaveUpdateDevice/GetDeviceById
+			So wie schon bei DeviceGroup und DeviceCategory angegeben sollten für die Labels nur die Keys übertragen werden.
+			Über die verschiedenen Methoden (GetLabels, GetGroups, GetCategories, ...) können wir den Keys dann Werte zuordnen. Das hat weiterhin den Vorteil, dass wir die Indizes von der Sprache abtrennen.
+
+		[BESPRECHEN]
+		3) GetDeviceByFilters
+			Können wir drinnen lassen, würde ich aber nicht benutzen.
+
+		[P2]
+		4) GetGroupsByCategory
+			Hier würde ich eher nur GetGroups bevorzugen. Dann könnten wir auf GetCategories verzichten und würden nicht für jede Kategorie eine eigene Anfrage starten. Den Response stelle ich mir so vor:
+			{
+				Cat1: {
+					Key: 1,
+					Value: "Flow",
+					Groups: [
+						{
+							Key: 1,
+							Value: "Magnetic Flowmeters"
+						},
+						{
+							...
+						}
+					]
+				},
+				Cat2: {
+					...
+				}
+			}
+
+Neue Endpunkte:
+
+	BEREICH USER
+
+		[BESPRECHEN]
+		1) AddUserWithCompany
+			Eventuell sollten wir das auch trennen, das müssen wir mal ausdiskutieren
+
+		[P3]
+		2) DeactivateUser/ReactivateUser
+			Nur für einen Admin verfügbar. Admin sended eine Email-Adresse zusammen mit dem Request, der User kann sich danach nicht mehr für die Entsprechende Company anmelden.
+
+	BEREICH DEVICE
+
+		[P0/P2]
+		1) AddDevice/DeleteDevice
+			Im Moment gibt es keine Möglichkeit Devices anzulegen oder zu löschen.
+
+		[P1]
+		2) AddLabel
+			Es muss die Möglichkeit geben, Labels anzulegen.
+
+		[P0]
+		3) GetDeviceList
+			Hier wäre eine Liste von allen Divices, die dem User zugewiesen sind gut. Dafür brauchen wir aber füre jedes Device nur die Daten, nach denen der User Filtern kann. Das wären für den Anfang denke ich:
+				- Labels
+				- Group (Category evtl unnötig?)
+				- Prozessmedium
+				- Name
+				- Seriennummer
+				- ID
+			Optional dann noch:
+				(Comment)
+				(HasMaintenance)
+				(Evtl können wir irgendwie anzeigen, wann Maintenance ist)
+
+			Diese Daten können wir für die Navigation nutzen, wenn ein User dann ein Device auswählt werden die Daten über GetDeviceById geholt.
+
+
+	NEUER BEREICH: COMPANY
+
+		[P1]
+		1) AddCompany
+			Wenn wir nicht AddUserWithCompany machen, dann brauchen wir diesen Endpunkt.
+
+		[P3]
+		2) GetCompanyData
+			Alle relevante Companydata. Wird nur an Admins ausgegeben, Company kann ja anhand des Tokens festgestellt werden
+
+		[P3]
+		3) UpdateCompanyData
+			Damit der Admin Company Daten anpassen kann

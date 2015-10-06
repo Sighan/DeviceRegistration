@@ -10,6 +10,12 @@
 angular.module('deviceRegistrationApp')
     .controller('DeviceCtrl', ['$scope', '$state', '$location', 'deviceService', 'messageService', function ($scope, $state, $location, deviceService, messageService) {
 
+         /* Once the API is finished this will have to be rewritten. The deviceService will deliver promises,
+         * These can be acted upon by using the .success(data) and .error(data) function.
+         * Take a look at how the loginController (login.js) receives the promises and stores their data.
+         */
+
+
         $scope.hasMaintenance = false;
         $scope.hasNotification = false;
         $scope.date = new Date();

@@ -20,7 +20,8 @@ angular.module('deviceRegistrationApp')
             return restService.user.get();
         },
         getUserDataByMail: function(mail){
-            var request=mail;
+            var request={};
+            request.mail = mail;
             return restService.user.get(request);
         },
         updateUser: function(userData){
@@ -28,11 +29,13 @@ angular.module('deviceRegistrationApp')
             return restService.user.update(request);
         },
         deactivateUser: function(mail){
-            var request=mail;
+            var request={};
+            request.mail = mail;
             return restService.user.disable(request);
         },
         activateUser: function(mail){
-            var request=mail;
+            var request={};
+            request.mail = mail;
             return restService.user.get(request);
         }
       };
