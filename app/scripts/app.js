@@ -75,7 +75,7 @@ var app =
             .state('access', {
                 abstract: true,
                 controller: 'LoginCtrl',
-                template: '<div class="modal-over bg-black"><div ui-view class="fade-in-right-big smooth"></div></div>',
+                template: '<div class="modal-over bg-access" style="background: "><div ui-view class="fade-in-right-big smooth"></div></div>',
                 data: {
                   requiresNotLoggedIn: true
                 }
