@@ -24,7 +24,7 @@ angular.module('deviceRegistrationApp')
         $scope.ranges = ['Weekly', 'Monthly'];
 
         //Add some test devices
-        for (var i = 1; i <= 2; i++) {
+        for (var i = 1; i <= 9; i++) {
             deviceService.saveDevice(
                 {
                     id: i,
@@ -49,6 +49,7 @@ angular.module('deviceRegistrationApp')
             );
         }
 
+        //Save a new device https://devicereg.herokuapp.com/#/devices/new
         $scope.save = function (device, isValid) {
             if (isValid) {
                 if (!angular.isNumber(device.id)) {
@@ -64,20 +65,26 @@ angular.module('deviceRegistrationApp')
                 }
             }
         };
+
+        //Update currently unsupported, use save() instead
         $scope.update = function () {
 
         };
+
+        //Delete a device
         $scope.delete = function (device) {
             if (deviceService.deleteDevice(device.id)) {
                 $scope.getAll();
-                messageService.logSuccess(device.designation + ' deleted.' );
-                if ($state.is('app.devices.all')){
-                  messageService.printAndClear();
+                messageService.logSuccess(device.designation + ' deleted.');
+                if ($state.is('app.devices.all')) {
+                    messageService.printAndClear();
                 } else {
-                  $state.go('app.devices.all');
+                    $state.go('app.devices.all');
                 }
             }
         };
+
+        //Get a device by id (state param)
         $scope.get = function () {
             var id = $state.params.id;
             if (angular.isNumber(id)) {
@@ -87,9 +94,13 @@ angular.module('deviceRegistrationApp')
             }
 
         };
+
+        //Get all devices
         $scope.getAll = function () {
             $scope.devices = deviceService.loadDevices();
         };
+
+        //Reset form
         $scope.reset = function (form) {
             if (form) {
                 form.$setPristine();
@@ -98,38 +109,9 @@ angular.module('deviceRegistrationApp')
             $scope.device = angular.copy($scope.master);
         };
 
-        $scope.filterByLabel = function(label) {
-          $scope.devFilter.search=label;
-          $state.go('app.devices.all');
+        //Filter devices
+        $scope.filterByLabel = function (label) {
+            $scope.devFilter.search = label;
+            $state.go('app.devices.all');
         };
-
-        $scope.addRandomDevice = function () {
-          var newID = deviceService.loadDevices().length + 1
-          deviceService.saveDevice(
-              {
-                  id: newID,
-                  category: 'Flow',
-                  designation: 'Device #' + newID,
-                  group: 'Magnetic Flowmeters',
-                  serial: '1234-5678-9' + i,
-                  medium: 'Cool medium',
-                  comment: 'This is just a test device',
-                  labels: [
-                      $scope.labels[Math.floor((Math.random() * $scope.labels.length))], $scope.labels[Math.floor((Math.random() * $scope.labels.length * 2))]
-                  ],
-                  maintenance: {
-                      interval: newID + ' months',
-                      start: '23.06.2015'
-                  },
-                  notification: {
-                      reminder: newID + ' year',
-                      mail: 'max@mustermann.de'
-                  }
-              }
-          );
-          $scope.devices=deviceService.loadDevices();
-        };
-
-
-
     }]);
