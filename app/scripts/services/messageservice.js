@@ -55,6 +55,7 @@ angular.module('deviceRegistrationApp')
             return messageList;
         }
 
+        /* Used for sorting by Type */
         function messageComparator(a,b) {
           var typeOrder={
             'error': 1,

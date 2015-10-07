@@ -28,7 +28,8 @@ var app =
     'valdr',
     'uuid4'
   ]).constant('urls', {
-        API: '//private-72e83-devreg.apiary-mock.com/api'
+        //API: '//private-72e83-devreg.apiary-mock.com/api'
+        API: 'http://devicereg.f4.htw-berlin.de:8085/api/'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
