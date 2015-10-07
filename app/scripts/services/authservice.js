@@ -13,9 +13,8 @@ angular.module('deviceRegistrationApp')
          return {
              signin: function (data) {
                  var loginRequest = {};
-                 loginRequest.load={};
-                 loginRequest.load.EmailAddress = data.email;
-                 loginRequest.load.Password = data.pass;
+                 loginRequest.Email = data.email;
+                 loginRequest.Password = data.pass;
                  /* This has to happen regardless of context, therefore it's written in the service */
                  return restService.auth.signIn(loginRequest).success(function(res){
                     $localStorage.token=res.AccessToken;
