@@ -17,7 +17,7 @@ angular.module('deviceRegistrationApp')
                  loginRequest.Password = data.pass;
                  /* This has to happen regardless of context, therefore it's written in the service */
                  return restService.auth.signIn(loginRequest).success(function(res){
-                    $localStorage.token=res.AccessToken;
+                    $localStorage.token=res.Data[0].AccessToken;
                  });
              },
              logout: function () {
