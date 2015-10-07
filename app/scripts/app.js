@@ -29,7 +29,7 @@ var app =
     'uuid4'
   ]).constant('urls', {
         //API: '//private-72e83-devreg.apiary-mock.com/api'
-        API: '//devicereg.f4.htw-berlin.de:8085/api'
+        API: 'http://devicereg.f4.htw-berlin.de:8085/api'
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 

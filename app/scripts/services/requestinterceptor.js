@@ -15,6 +15,9 @@ angular.module('deviceRegistrationApp')
                  if (typeof($localStorage.token) !== 'undefined') {
                      config.headers.Authorization = 'Token ' + $localStorage.token;
                  }
+                 config.headers['Access-Control-Allow-Origin'] = '*';
+                 config.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+                 config.headers['Access-Control-Allow-Headers'] = 'Content-Type, X-Requested-With';
                  return config;
              },
              'responseError': function (response) {
