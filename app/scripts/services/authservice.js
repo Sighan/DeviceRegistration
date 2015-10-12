@@ -8,7 +8,7 @@
  * Service in the deviceRegistrationApp.
  */
 angular.module('deviceRegistrationApp')
-     .factory('authService', ['$localStorage', 'restService', function ($localStorage, restService) {
+     .factory('authService', ['$localStorage', 'restService', '$state', function ($localStorage, restService, $state) {
 
          return {
              signin: function (data) {
@@ -22,6 +22,7 @@ angular.module('deviceRegistrationApp')
              },
              logout: function () {
                  delete $localStorage.token;
+                 $state.go('access.login');
                  /* This will probably return nothing, just added it for completion */
                  return restService.auth.signOut();
              },

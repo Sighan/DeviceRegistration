@@ -15,6 +15,7 @@ angular.module('deviceRegistrationApp')
             angular.element('.header-fixed').css('padding-top', ($scope.messages.length + 1) * 50 + 'px');
         }
 
+        /* Removes Error from View */
         $scope.dismiss = function (type) {
             messageService.clear(type);
             messageService.print();
