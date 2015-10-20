@@ -106,6 +106,8 @@ angular.module('deviceRegistrationApp')
             $scope.devices = deviceService.loadDevices();
         };
 
+
+
         //Reset form
         $scope.reset = function (form) {
             if (form) {
